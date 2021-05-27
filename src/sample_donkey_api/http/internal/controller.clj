@@ -16,4 +16,4 @@
     (respond ok-response)))
 
 (defmethod ig/init-key :internal/controller [_ _]
-  (->HttpInternalController))
+  (HttpInternalController.))

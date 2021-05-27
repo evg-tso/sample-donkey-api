@@ -6,4 +6,3 @@
                                            com.brunobonacci.mulog logger
                                            integrant.core         ig
                                            clojure.core.async     async}}}}
-

@@ -1,0 +1,60 @@
+name: "CI - branches"
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: adopt
+          java-version: 11
+      - name: Restore local Maven repository from cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles( 'project.clj' ) }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Lint
+        uses: DeLaGuardo/clojure-lint-action@master
+        with:
+          clj-kondo-args: --lint src test --cache false
+          check-name: clj-kondo liniting report
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    needs: build
+    runs-on: ubuntu-20.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: adopt
+          java-version: 11
+      - name: Restore local Maven repository from cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles( 'project.clj' ) }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Unit tests
+        run: lein eftest :all
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.17
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: "target/junit.xml"

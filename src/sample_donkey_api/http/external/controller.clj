@@ -12,4 +12,4 @@
     (respond ok-response)))
 
 (defmethod ig/init-key :external/controller [_ _]
-  (->HttpExternalController))
+  (HttpExternalController.))

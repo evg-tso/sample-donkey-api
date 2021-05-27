@@ -14,7 +14,7 @@
 (defn- create-malli-validation-service [schema]
   (let [explainer (malli/explainer schema)
         validator (malli/validator schema)]
-    (->ValidationService validator
+    (ValidationService. validator
                          #(malli-error/humanize (explainer %)))))
 
 (defmethod ig/init-key :service/validation [_ {:keys [schema]}]

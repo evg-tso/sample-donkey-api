@@ -34,6 +34,7 @@
              :dev     {:dependencies   [[clj-kondo "2021.04.23"]
                                         [org.testcontainers/kafka "1.15.3"]
                                         [metosin/jsonista "0.3.3"]]
+                       :aliases        {"lint" ["run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel"]}
                        :test-selectors {:default     (complement :integration)
                                         :integration :integration
                                         :all         (constantly true)}}})

@@ -14,9 +14,9 @@
                        :routes               router}]
     (server-common/create-server donkey server-config)))
 
-;(defmethod ig/init-key ::server [_ {:keys [donkey router] :as config}]
-;  (start-server donkey router config))
-;
-;(defmethod ig/halt-key! ::server [_ server]
-;  (logger/log ::server-stopped)
-;  (donkey-server/stop-sync server))
+(defmethod ig/init-key :external/server [_ {:keys [donkey router] :as config}]
+  (start-server donkey router config))
+
+(defmethod ig/halt-key! :external/server [_ server]
+  (logger/log ::server-stopped)
+  (donkey-server/stop-sync server))

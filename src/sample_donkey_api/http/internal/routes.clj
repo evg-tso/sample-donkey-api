@@ -5,7 +5,8 @@
             [sample-donkey-api.http.middleware.exception :as exception-middleware]
             [integrant.core :as ig]
             [sample-donkey-api.http.protocols :as protocols]
-            [com.appsflyer.donkey.middleware.params :as donkey-params]))
+            [com.appsflyer.donkey.middleware.params :as donkey-params]
+            [ring.util.response :as response]))
 
 (defn- get-routes
   [controller]
@@ -28,7 +29,7 @@
   (reitit-ring/ring-handler
     router
     (reitit-ring/create-default-handler
-      {:not-found (fn [_] {:status 404 :body "Not found :("})})))
+      {:not-found (constantly (response/status 404))})))
 
 (defn- routes [controller]
   (let [ring-handler (-> controller

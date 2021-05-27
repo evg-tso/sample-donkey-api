@@ -1,4 +1,4 @@
-(ns sample-donkey-api.application.model.buy-stock
+(ns sample-donkey-api.application.model.stock-order
   (:require [sample-donkey-api.application.model.validation :as validation]
             [integrant.core :as ig]))
 
@@ -45,5 +45,5 @@
               [:path-params path]
               [:body-params body]])
 
-(defmethod ig/init-key :model/buy-stock [_ _]
+(defmethod ig/init-key :model/create-stock-order [_ _]
   request)

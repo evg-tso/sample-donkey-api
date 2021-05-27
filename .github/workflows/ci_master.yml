@@ -25,7 +25,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Lint
-        uses: DeLaGuardo/clojure-lint-action@v1
+        uses: DeLaGuardo/clojure-lint-action@master
         with:
           clj-kondo-args: --lint src test --cache false
           check-name: clj-kondo liniting report

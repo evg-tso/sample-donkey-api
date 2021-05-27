@@ -1,5 +1,7 @@
 # sample-donkey-api
 
+[![CI - master](https://github.com/evg-tso/sample-donkey-api/actions/workflows/ci_master.yml/badge.svg?branch=master)](https://github.com/evg-tso/sample-donkey-api/actions/workflows/ci_master.yml)
+
 This is a sample Clojure http server that will:
 - Display a [swagger](https://swagger.io/) page.
 - Validate or reject http requests based on a schema.

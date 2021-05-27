@@ -1,0 +1,9 @@
+{:service/validation  {:schema #ig/ref :model/buy-stock}
+ :model/buy-stock     {}
+ ;:external-server/server         {:port 8080}
+ :internal/server     {:donkey #ig/ref :http-factory/donkey
+                       :router #ig/ref :internal/routes
+                       :port   8081}
+ :internal/routes     {:controller #ig/ref :internal/controller}
+ :internal/controller {}
+ :http-factory/donkey {}}

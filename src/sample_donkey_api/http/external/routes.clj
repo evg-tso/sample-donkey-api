@@ -12,9 +12,6 @@
             [reitit.coercion.malli :as reitit-coercion-malli]))
 
 (defn- get-routes
-  "returns a rather explicit data structure to be used for reitit router creation.
-  The explicitness allows for adding more metadata as keys later for each path and extend
-  each route."
   [{:keys [controller create-stock-order-schema]}]
   (let [responses {202 {:description "The request was accepted"}
                    400 {:description "In case any of the fields in the message body are missing, or if any of the fields are invalid"}

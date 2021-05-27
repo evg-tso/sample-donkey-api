@@ -1,8 +1,9 @@
-name: "Pull Request Build & Test"
+name: "Push CI - branches"
 
 on:
-  pull_request:
-    types: [opened, reopened]
+  push:
+    branches-ignore:
+      - master
 
 jobs:
   build:
@@ -24,7 +25,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Lint
-        run: lein lint
+        uses: DeLaGuardo/clojure-lint-action@v1
+        with:
+          clj-kondo-args: --lint src test --cache false
+          check-name: clj-kondo liniting report
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     needs: build
@@ -47,3 +52,9 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Unit tests
         run: lein eftest :all
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1.17
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: "target/junit.xml"

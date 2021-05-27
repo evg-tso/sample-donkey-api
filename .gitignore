@@ -12,3 +12,4 @@ pom.xml.asc
 .sdkmanrc
 .idea
 *.iml
+.clj-kondo/.cache

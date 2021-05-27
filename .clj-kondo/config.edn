@@ -1,0 +1,9 @@
+{:linters {:unresolved-symbol   {:level :error}
+           :unused-binding      {:level :error}
+           :unused-namespace    {:level :error}
+           :unused-referred-var {:level :error}
+           :consistent-alias    {:aliases {clojure.string         s
+                                           com.brunobonacci.mulog logger
+                                           integrant.core         ig
+                                           clojure.core.async     async}}}}
+

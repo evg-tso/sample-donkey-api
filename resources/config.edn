@@ -2,14 +2,19 @@
  :model/create-stock-order {}
  :external/server          {:donkey #ig/ref :http-factory/donkey
                             :router #ig/ref :external/routes
-                            :port   8080}
+                            :port   #dyn/prop [EXTERNAL_PORT 8080]}
  :external/routes          {:controller                #ig/ref :external/controller
                             :create-stock-order-schema #ig/ref :model/create-stock-order
-                            :validation-service        #ig/ref :service/validation}
+                            :validation-service        #ig/ref :service/validation
+                            :ip-resolver               #ig/ref :repository/ip-resolver}
  :external/controller      {}
  :internal/server          {:donkey #ig/ref :http-factory/donkey
                             :router #ig/ref :internal/routes
-                            :port   8081}
+                            :port   #dyn/prop [EXTERNAL_PORT 8081]}
  :internal/routes          {:controller #ig/ref :internal/controller}
  :internal/controller      {}
- :http-factory/donkey      {}}
+ :http-factory/donkey      {}
+ :http/client              {:donkey #ig/ref :http-factory/donkey}
+ :repository/ip-resolver   {:http-client  #ig/ref :http/client
+                            :access-key   #dyn/prop IP_STACK_ACCESS_KEY
+                            :url-template "http://api.ipstack.com/%s?access_key=%s&output=json&fields=country_code,region_code,latitude,longitude,continent_code"}}

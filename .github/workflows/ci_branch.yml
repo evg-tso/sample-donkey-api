@@ -51,6 +51,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Unit tests
+        env:
+          IP_STACK_ACCESS_KEY: ${{ secrets.IP_STACK_ACCESS_KEY }}
         run: lein eftest :all
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.17

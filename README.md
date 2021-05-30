@@ -27,16 +27,22 @@ FIXME: explanation
     $ java -jar sample-donkey-api-0.1.0-standalone.jar [args]
 
 ## Used libraries
-- [donkey](https://github.com/AppsFlyer/donkey) as the http server.
+- [Donkey](https://github.com/appsflyer/donkey) as the http server.
 - [clj-test-containers](https://github.com/javahippie/clj-test-containers) for integration tests.
-- [malli](https://github.com/evg-tso/malli) for request validation.
+- [malli](https://github.com/metosin/malli) for request validation.
 - [reitit](https://github.com/metosin/reitit) for routing requests.
-- [integrant](https://github.com/weavejester/integrant) for state management.
-- [ketu](https://github.com/appsflyer/ketu) as the Kafka library.
+- [Integrant](https://github.com/weavejester/integrant) for state management.
+- [Ketu](https://github.com/appsflyer/ketu) as the Kafka library.
 
 ## Examples
 
 ...
+
+## Testing
+
+- `lein test` - To run all unit tests.
+- `lein test :integration` - To run all integration tests.
+- `lein test :all` - To run all types of tests.
 
 ## License
 

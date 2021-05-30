@@ -21,9 +21,13 @@
 
                  ; State management
                  [integrant "0.8.0"]
+                 [com.walmartlabs/dyn-edn "0.2.0"]
 
                  ; Logging
                  [com.brunobonacci/mulog "0.7.1"]
+
+                 ; Async handlers
+                 [funcool/promesa "6.0.1"]
 
                  ; Other
                  [danlentz/clj-uuid "0.1.9"]]

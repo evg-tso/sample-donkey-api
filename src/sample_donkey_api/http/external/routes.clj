@@ -7,12 +7,13 @@
             [malli.util :as malli-util]
             [reitit.ring.middleware.muuntaja :as reitit-middleware-muuntaja]
             [sample-donkey-api.http.middleware.exception :as exception-middleware]
+            [sample-donkey-api.http.middleware.validation :as validation-middleware]
             [muuntaja.core :as muuntaja]
             [sample-donkey-api.http.protocols :as protocols]
             [reitit.coercion.malli :as reitit-coercion-malli]))
 
 (defn- get-routes
-  [{:keys [controller create-stock-order-schema]}]
+  [{:keys [controller create-stock-order-schema validation-service]}]
   (let [responses {202 {:description "The request was accepted"}
                    400 {:description "In case any of the fields in the message body are missing, or if any of the fields are invalid"}
                    500 {:description "Internal server error"}}]
@@ -27,14 +28,12 @@
         {:get (reitit-swagger-ui/create-swagger-ui-handler)}]]
       ["/api"
        ["/v1.0"
-        ["/ping" {:get {:summary   "Returns pong"
-                        :responses responses
-                        :handler   (partial protocols/ping controller)}}]
-        ["/stocks/order" {:post {:summary   "Order stocks"
-                                 :parameters {:path   (malli-util/get create-stock-order-schema :path-params)
-                                              :body   (malli-util/get create-stock-order-schema :body-params)}
-                                 :responses responses
-                                 :handler   (partial protocols/ping controller)}}]]]]]))
+        ["/stocks/order/:stock-id" {:post {:summary    "Order stocks"
+                                           :parameters {:path (malli-util/get create-stock-order-schema :path-params)
+                                                        :body (malli-util/get create-stock-order-schema :body-params)}
+                                           :responses  responses
+                                           :middleware [[validation-middleware/validate-request-middleware validation-service]]
+                                           :handler    (partial protocols/order-stock controller)}}]]]]]))
 
 (defn- create-router
   "creates a reitit router and validates its structure"
@@ -58,12 +57,14 @@
     (reitit-ring/create-default-handler
       {:not-found (constantly (response/status 404))})))
 
-(defn- routes [controller create-stock-order-schema]
-  (let [ring-handler (-> (get-routes {:controller controller :create-stock-order-schema create-stock-order-schema})
+(defn- routes [controller create-stock-order-schema validation-service]
+  (let [ring-handler (-> (get-routes {:controller                controller
+                                      :create-stock-order-schema create-stock-order-schema
+                                      :validation-service        validation-service})
                          create-router
                          create-ring-handler)]
     [{:handler      ring-handler
       :handler-mode :non-blocking}]))
 
-(defmethod ig/init-key :external/routes [_ {:keys [controller create-stock-order-schema]}]
-  (routes controller create-stock-order-schema))
+(defmethod ig/init-key :external/routes [_ {:keys [controller create-stock-order-schema validation-service]}]
+  (routes controller create-stock-order-schema validation-service))

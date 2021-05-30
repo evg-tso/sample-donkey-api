@@ -3,8 +3,9 @@
  :external/server          {:donkey #ig/ref :http-factory/donkey
                             :router #ig/ref :external/routes
                             :port   8080}
- :external/routes          {:controller #ig/ref :external/controller
-                            :create-stock-order-schema #ig/ref :model/create-stock-order}
+ :external/routes          {:controller                #ig/ref :external/controller
+                            :create-stock-order-schema #ig/ref :model/create-stock-order
+                            :validation-service        #ig/ref :service/validation}
  :external/controller      {}
  :internal/server          {:donkey #ig/ref :http-factory/donkey
                             :router #ig/ref :internal/routes

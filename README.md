@@ -1,8 +1,8 @@
-# sample-donkey-api
+# Sample Clojure web api
 
 [![CI - master](https://github.com/evg-tso/sample-donkey-api/actions/workflows/ci_master.yml/badge.svg?branch=master)](https://github.com/evg-tso/sample-donkey-api/actions/workflows/ci_master.yml)
 
-This is a sample Clojure http server that will:
+This is a sample Clojure web api that will:
 - Display a [swagger](https://swagger.io/) page.
 - Validate or reject http requests based on a schema.
 - Do an async http request to resolve the client's IP address.

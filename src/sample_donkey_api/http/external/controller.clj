@@ -2,13 +2,13 @@
   (:require [sample-donkey-api.http.protocols :as protocols]
             [integrant.core :as ig]))
 
-(def ^:private ^:const ok-response {:status 200 :body "pong"})
+(def ^:private ^:const ok-response {:status 202})
 
 (deftype ^:private HttpExternalController []
   protocols/IExternalController
-  (ping [_ _]
+  (order-stock [_ _]
     ok-response)
-  (ping [_ _ respond _]
+  (order-stock [_ _ respond _]
     (respond ok-response)))
 
 (defmethod ig/init-key :external/controller [_ _]

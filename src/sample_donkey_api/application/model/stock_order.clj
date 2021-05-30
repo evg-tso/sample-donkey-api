@@ -1,17 +1,19 @@
 (ns sample-donkey-api.application.model.stock-order
   (:require [sample-donkey-api.application.model.validation :as validation]
+            [clj-uuid :as uuid]
             [integrant.core :as ig]))
 
 (def ^:private non-empty-string [:string {:min 1}])
 
 (def ^:private stock-id [:and
-                         {:description "This is the stock ID"}
+                         {:description         "This is the stock ID"
+                          :json-schema/example "AAPL"}
                          non-empty-string
                          [:fn {:error/message "should be alphanumeric"} validation/alphanumeric?]])
 
 (def ^:private amount-usd [:and
                            {:description         "The amount to buy/sell"
-                            :json-schema/example "3.47"}
+                            :json-schema/example 3.47}
                            :double
                            [:not= 0]])
 
@@ -19,7 +21,8 @@
                            {:description         "A unique identifier for the request, used for tracked purposes"
                             :json-schema/example "71dad7da-7926-40d8-9b15-b94a6d46e15a"
                             :optional            true}
-                           :uuid])
+                           [:string {:min 36 :max 36}]
+                           [:fn {:error/message "should be a valid UUID"} uuid/uuid-string?]])
 
 (def ^:private ip [:and
                    {:json-schema/example "35.244.183.10"
@@ -33,7 +36,7 @@
                            :description         "The direction of the operation, buy or sell"}
                           [:enum "buy" "sell"]])
 
-(def path [:map [:stock_id stock-id]])
+(def path [:map [:stock-id stock-id]])
 
 (def body [:map
            [:amount_usd amount-usd]

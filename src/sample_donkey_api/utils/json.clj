@@ -1,4 +1,4 @@
-(ns sample-donkey-api.json
+(ns sample-donkey-api.utils.json
   (:require [jsonista.core :as json]))
 
 (def ^:private json-mapper (json/object-mapper {:decode-key-fn    true

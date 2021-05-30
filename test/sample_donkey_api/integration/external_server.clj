@@ -8,7 +8,7 @@
             [com.appsflyer.donkey.result :as donkey-result]
             [sample-donkey-api.integration.order-stock-messages :as order-stock-messages]
             [com.brunobonacci.mulog :as logger]
-            [sample-donkey-api.json :as json]))
+            [sample-donkey-api.utils.json :as json]))
 
 (defn- with-external-server [test-fn]
   (let [system-map (assembly/start-application)]

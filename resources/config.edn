@@ -1,20 +1,27 @@
-{:service/validation       {:schema #ig/ref :model/create-stock-order}
- :model/create-stock-order {}
- :external/server          {:donkey #ig/ref :http-factory/donkey
-                            :router #ig/ref :external/routes
-                            :port   #dyn/prop [EXTERNAL_PORT 8080]}
- :external/routes          {:controller                #ig/ref :external/controller
-                            :create-stock-order-schema #ig/ref :model/create-stock-order
-                            :validation-service        #ig/ref :service/validation
-                            :ip-resolver               #ig/ref :repository/ip-resolver}
- :external/controller      {}
- :internal/server          {:donkey #ig/ref :http-factory/donkey
-                            :router #ig/ref :internal/routes
-                            :port   #dyn/prop [EXTERNAL_PORT 8081]}
- :internal/routes          {:controller #ig/ref :internal/controller}
- :internal/controller      {}
- :http-factory/donkey      {}
- :http/client              {:donkey #ig/ref :http-factory/donkey}
- :repository/ip-resolver   {:http-client  #ig/ref :http/client
-                            :access-key   #dyn/prop IP_STACK_ACCESS_KEY
-                            :url-template "http://api.ipstack.com/%s?access_key=%s&output=json&fields=country_code,region_code,latitude,longitude,continent_code"}}
+{:service/validation              {:schema #ig/ref :model/create-stock-order}
+ :model/create-stock-order        {}
+ :external/server                 {:donkey #ig/ref :http-factory/donkey
+                                   :router #ig/ref :external/routes
+                                   :port   #dyn/prop ["EXTERNAL_PORT" 8080]}
+ :external/routes                 {:controller                #ig/ref :external/controller
+                                   :create-stock-order-schema #ig/ref :model/create-stock-order
+                                   :validation-service        #ig/ref :service/validation
+                                   :ip-resolver               #ig/ref :repository/ip-resolver}
+ :external/controller             {:stock-order-processor #ig/ref :processor/stock-order}
+ :internal/server                 {:donkey #ig/ref :http-factory/donkey
+                                   :router #ig/ref :internal/routes
+                                   :port   #dyn/prop ["EXTERNAL_PORT" 8081]}
+ :internal/routes                 {:controller #ig/ref :internal/controller}
+ :internal/controller             {}
+ :http-factory/donkey             {}
+ :http/client                     {:donkey #ig/ref :http-factory/donkey}
+ :repository/ip-resolver          {:http-client  #ig/ref :http/client
+                                   :access-key   #dyn/prop IP_STACK_ACCESS_KEY
+                                   :url-template "http://api.ipstack.com/%s?access_key=%s&output=json&fields=country_code,region_code,latitude,longitude,continent_code"}
+ :repository/stock-order-producer {:producer-config                {:name       "stocks-order-producer"
+                                                                    :brokers    #dyn/prop ["KAFKA_BROKERS" "..."]
+                                                                    :topic      "stocks_orders"
+                                                                    :value-type :string
+                                                                    :shape      :value}
+                                   :producer-channel-size-per-core #dyn/long #dyn/prop ["CHANNEL_SIZE_PER_CORE" "250"]}
+ :processor/stock-order           {:message-producer #ig/ref :repository/stock-order-producer}}

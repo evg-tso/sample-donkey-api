@@ -6,3 +6,7 @@
 
 (defprotocol IIPResolver
   (resolve-ip [this ip] "Returns the resolved IP as a map, or nil"))
+
+(defprotocol IMessagePublisher
+  (publish [this message] "Publishes an event, expected to return true if accepted")
+  (close! [this] "Closes the output"))

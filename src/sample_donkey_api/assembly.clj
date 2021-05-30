@@ -13,7 +13,9 @@
             [com.walmartlabs.dyn-edn :as dyn-edn]
             [clojure.edn :as edn]
             [sample-donkey-api.http.client]
-            [sample-donkey-api.infrastructure.repository.ip-resolver]))
+            [sample-donkey-api.infrastructure.repository.ip-resolver]
+            [sample-donkey-api.infrastructure.repository.kafka-producer]
+            [sample-donkey-api.application.service.event-processor]))
 
 (defn start-application []
   (let [states-map (->> "config.edn"

@@ -25,9 +25,10 @@
 
                  ; Logging
                  [com.brunobonacci/mulog "0.7.1"]
+                 [nonseldiha/slf4j-mulog "0.2.1"]
 
-                 ; Async handlers
-                 [funcool/promesa "6.0.1"]
+                 ; Kafka messaging
+                 [com.appsflyer/ketu "0.6.0"]
 
                  ; Other
                  [danlentz/clj-uuid "0.1.9"]]
@@ -38,6 +39,7 @@
              :dev     {:plugins        [[lein-eftest "0.5.9"]]
                        :dependencies   [[clj-kondo "2021.04.23"]
                                         [org.testcontainers/kafka "1.15.3"]
+                                        [clj-test-containers "0.4.0"]
                                         [metosin/jsonista "0.3.3"]]
                        :eftest         {:multithread?    false
                                         :capture-output? false

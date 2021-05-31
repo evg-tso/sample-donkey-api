@@ -15,7 +15,7 @@
                  [commons-codec/commons-codec "1.15"]
 
                  ; HTTP server
-                 [com.appsflyer/donkey "0.5.0"]
+                 [com.appsflyer/donkey "0.5.1"]
                  [metosin/reitit "0.5.13"]
                  [ring/ring-core "1.9.3"]
 

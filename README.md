@@ -1,6 +1,7 @@
 # Sample Clojure web api
 
 [![GitHub CI](https://github.com/evg-tso/sample-donkey-api/actions/workflows/push_ci.yml/badge.svg)](https://github.com/evg-tso/sample-donkey-api/actions/workflows/push_ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/evg-tso/sample-donkey-api/badge.svg?branch=master)](https://coveralls.io/github/evg-tso/sample-donkey-api?branch=master)
 
 This is a sample Clojure web api that will:
 - Display a [swagger](https://swagger.io/) page.

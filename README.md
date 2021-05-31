@@ -19,13 +19,11 @@ This is a sample Clojure web api that will:
 
 ## Installation
 
-`lein deps`
+    $ lein uberjar
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar sample-donkey-api-0.1.0-standalone.jar [args]
+    $ java -jar sample-donkey-api-0.1.0-standalone.jar
 
 ## Used libraries
 - [Donkey](https://github.com/appsflyer/donkey) as the http server.
@@ -37,7 +35,19 @@ FIXME: explanation
 
 ## Examples
 
-...
+    $ export KAFKA_BROKER=my-broker:9092
+    $ lein uberjar
+    $ java -jar target/uberjar/sample-donkey-api-0.1.0-SNAPSHOT-standalone.jar
+    .. in another terminal session
+    $ curl --location --request POST 'http://localhost:8080/api/v1.0/stocks/order/AAPL' \
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+      "amount_usd": 3.47,
+      "request_id": "71dad7da-7926-40d8-9b15-b94a6d46e15a",
+      "ip": "35.244.183.10",
+      "direction": "buy"
+      }'
+
 
 ## Testing
 

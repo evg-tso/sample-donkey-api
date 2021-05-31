@@ -8,7 +8,7 @@
                  [org.clojure/core.async "1.3.618"]
 
                  ; Validation
-                 [metosin/malli "0.5.0"]
+                 [metosin/malli "0.5.1"]
                  [commons-validator/commons-validator "1.7"]
 
                  ; Authorization

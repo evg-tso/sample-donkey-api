@@ -36,7 +36,8 @@
   :target-path "target/%s"
   :profiles {:uberjar {:aot      :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
-             :dev     {:plugins      [[lein-eftest "0.5.9"]]
+             :dev     {:plugins      [[lein-eftest "0.5.9"]
+                                      [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]]
                        :dependencies [[clj-kondo "2021.04.23"]
                                       [org.testcontainers/kafka "1.15.3"]
                                       [clj-test-containers "0.4.0"]

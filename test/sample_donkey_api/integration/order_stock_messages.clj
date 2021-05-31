@@ -23,3 +23,14 @@
               "X-Forwarded-Port"  443
               "X-Forwarded-Proto" "https"
               "Connection"        "keep-alive"}}))
+
+(def expected-msg-in-chan
+  {:amount_usd 3.47
+   :direction  "buy"
+   :ip         {:continent_code "NA"
+                :country_code   "US"
+                :latitude       39.10771179199219
+                :longitude      -94.53961181640625
+                :region_code    "MO"}
+   :request_id "71dad7da-7926-40d8-9b15-b94a6d46e15a"
+   :stock_id   "AAPL"})

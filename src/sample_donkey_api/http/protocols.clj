@@ -4,5 +4,5 @@
   (order-stock [this req] [this req respond raise]))
 
 (defprotocol IInternalController
-  (liveness [this req] [this req respond raise])
-  (readiness [this req] [this req respond raise]))
+  (liveness [this req respond raise])
+  (readiness [this req respond raise]))

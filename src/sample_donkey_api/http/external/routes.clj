@@ -33,8 +33,8 @@
                                            :parameters {:path (malli-util/get create-stock-order-schema :path-params)
                                                         :body (malli-util/get create-stock-order-schema :body-params)}
                                            :responses  responses
-                                           :middleware [[validation-middleware/validate-request-middleware validation-service]
-                                                        [ip-resolver-middleware/ip-resolver-middleware ip-resolver]]
+                                           :middleware [(validation-middleware/create-validate-request-middleware validation-service)
+                                                        (ip-resolver-middleware/create-ip-resolver-middleware ip-resolver)]
                                            :handler    (partial protocols/order-stock controller)}}]]]]]))
 
 (defn- create-router

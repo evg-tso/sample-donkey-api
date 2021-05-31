@@ -6,12 +6,8 @@
 
 (deftype ^:private HttpInternalController []
   protocols/IInternalController
-  (liveness [_ _]
-    ok-response)
   (liveness [_ _ respond _]
     (respond ok-response))
-  (readiness [_ _]
-    ok-response)
   (readiness [_ _ respond _]
     (respond ok-response)))
 

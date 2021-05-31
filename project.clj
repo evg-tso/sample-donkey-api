@@ -8,23 +8,20 @@
                  [org.clojure/core.async "1.3.618"]
 
                  ; Validation
-                 [metosin/malli "0.5.1"]
+                 [metosin/malli "0.5.0"]
                  [commons-validator/commons-validator "1.7"]
 
                  ; Authorization
                  [commons-codec/commons-codec "1.15"]
 
                  ; HTTP server
-                 [com.appsflyer/donkey "0.5.1"]
+                 [com.appsflyer/donkey "0.5.0"]
                  [metosin/reitit "0.5.13"]
                  [ring/ring-core "1.9.3"]
 
                  ; State management
                  [integrant "0.8.0"]
                  [com.walmartlabs/dyn-edn "0.2.0"]
-
-                 ; JSON handling
-                 [metosin/jsonista "0.3.3"]
 
                  ; Logging
                  [com.brunobonacci/mulog "0.7.1"]
@@ -39,16 +36,13 @@
   :target-path "target/%s"
   :profiles {:uberjar {:aot      :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
-             :dev     {:plugins        [[lein-eftest "0.5.9"]
-                                        [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]]
-                       :dependencies   [[clj-kondo "2021.04.23"]
-                                        [org.testcontainers/kafka "1.15.3"]
-                                        [clj-test-containers "0.4.0"]]
-                       :eftest         {:multithread?    false
-                                        :capture-output? false
-                                        :report          eftest.report.junit/report
-                                        :report-to-file  "target/junit.xml"}
-                       :aliases        {"lint" ["run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel"]}
-                       :test-selectors {:default     (complement :integration)
-                                        :integration :integration
-                                        :all         (constantly true)}}})
+             :dev     {:plugins      [[lein-eftest "0.5.9"]]
+                       :dependencies [[clj-kondo "2021.04.23"]
+                                      [org.testcontainers/kafka "1.15.3"]
+                                      [clj-test-containers "0.4.0"]
+                                      [metosin/jsonista "0.3.3"]]
+                       :eftest       {:multithread?    false
+                                      :capture-output? false
+                                      :report          eftest.report.junit/report
+                                      :report-to-file  "target/junit.xml"}
+                       :aliases      {"lint" ["run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel"]}}})

@@ -1,5 +1,4 @@
 (ns sample-donkey-api.integration.external-server
-  ^:integration
   (:require [clojure.test :refer [deftest testing is use-fixtures]]
             [sample-donkey-api.assembly :as assembly]
             [sample-donkey-api.integration.http-factory-setup :as http-factory-setup]

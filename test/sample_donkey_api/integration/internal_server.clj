@@ -7,7 +7,8 @@
             [sample-donkey-api.assembly :as assembly]
             [com.appsflyer.donkey.client :as donkey-client]
             [sample-donkey-api.integration.containers.all-test-containers :as all-test-containers]
-            [com.brunobonacci.mulog :as logger]))
+            [com.brunobonacci.mulog :as logger]
+            [sample-donkey-api.integration.logs-setup :as logs-setup]))
 
 (defn- with-internal-server [test-fn]
   (let [system-map (assembly/start-application)]
@@ -15,6 +16,7 @@
     (assembly/stop-application system-map)))
 
 (use-fixtures :once
+              logs-setup/with-logs
               http-factory-setup/with-donkey-client
               all-test-containers/with-test-containers
               with-internal-server)

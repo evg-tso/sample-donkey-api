@@ -50,10 +50,15 @@ jobs:
       - name: Unit tests
         env:
           IP_STACK_ACCESS_KEY: ${{ secrets.IP_STACK_ACCESS_KEY }}
-        run: lein eftest :all
+        run: lein cloverage --html --lcov --junit
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1.17
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: "target/junit.xml"
+          files: "target/coverage/junit.xml"
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          path-to-lcov: "target/coverage/lcov.info"
+          github-token: ${{ secrets.GITHUB_TOKEN }}

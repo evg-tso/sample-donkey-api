@@ -23,6 +23,9 @@
                  [integrant "0.8.0"]
                  [com.walmartlabs/dyn-edn "0.2.0"]
 
+                 ; JSON handling
+                 [metosin/jsonista "0.3.3"]
+
                  ; Logging
                  [com.brunobonacci/mulog "0.7.1"]
                  [nonseldiha/slf4j-mulog "0.2.1"]
@@ -36,11 +39,11 @@
   :target-path "target/%s"
   :profiles {:uberjar {:aot      :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
-             :dev     {:plugins        [[lein-eftest "0.5.9"]]
+             :dev     {:plugins        [[lein-eftest "0.5.9"]
+                                        [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]]
                        :dependencies   [[clj-kondo "2021.04.23"]
                                         [org.testcontainers/kafka "1.15.3"]
-                                        [clj-test-containers "0.4.0"]
-                                        [metosin/jsonista "0.3.3"]]
+                                        [clj-test-containers "0.4.0"]]
                        :eftest         {:multithread?    false
                                         :capture-output? false
                                         :report          eftest.report.junit/report

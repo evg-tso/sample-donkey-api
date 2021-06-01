@@ -38,7 +38,7 @@
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
              :dev     {:plugins      [[lein-eftest "0.5.9"]
                                       [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]]
-                       :dependencies [[clj-kondo "2021.05.31"]
+                       :dependencies [[clj-kondo "2021.06.01"]
                                       [org.testcontainers/kafka "1.15.3"]
                                       [clj-test-containers "0.4.0"]
                                       [metosin/jsonista "0.3.3"]]

@@ -7,9 +7,6 @@
 
 (def stock-order-channel (async/chan 100
                                      (comp
-                                       (map (fn [x]
-                                              (println "got something from the channel")
-                                              x))
                                        (map #(StocksOuterClass$StockOrder/parseFrom ^bytes %))
                                        (map (fn [^StocksOuterClass$StockOrder stock-order]
                                               {:amount_usd (.getAmountUsd stock-order)

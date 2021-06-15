@@ -2,9 +2,9 @@
   (:require [sample-donkey-api.application.protocols :as protocols]
             [ketu.async.sink :as sink]
             [clojure.core.async :as async]
-            [sample-donkey-api.utils.json :as json]
             [com.brunobonacci.mulog :as logger]
-            [integrant.core :as ig]))
+            [integrant.core :as ig])
+  (:import (com.google.protobuf Message)))
 
 (deftype ^:private KafkaProducer [channel producer]
   protocols/IMessagePublisher
@@ -20,7 +20,7 @@
         serialized-channel    (async/chan channel-size)]
     (async/pipeline available-processors
                     serialized-channel
-                    (map json/stringify)
+                    (map #(.toByteArray ^Message %))
                     in-channel
                     true
                     #(logger/log ::error-mapping-kafka-message :exception %))

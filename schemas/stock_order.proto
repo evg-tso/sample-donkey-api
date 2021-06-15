@@ -1,0 +1,25 @@
+syntax = "proto3";
+package stocks;
+option java_outer_classname = "StocksOuterClass";
+
+message StockOrder {
+  double amount_usd = 1;
+  string request_id = 2;
+  IP ip = 3;
+  Direction direction = 4;
+  string stock_id = 5;
+}
+
+message IP {
+  string country_code = 1;
+  string region_code = 2;
+  double latitude = 3;
+  double longitude = 4;
+  string continent_code = 5;
+}
+
+enum Direction {
+  UNKNOWN_DIRECTION = 0;
+  BUY = 1;
+  SELL = 2;
+}

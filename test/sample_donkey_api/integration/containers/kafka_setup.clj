@@ -28,7 +28,7 @@
        :topic           topic
        :group-id        consumer-id
        :brokers         (get-bootstrap-servers @kafka-container)
-       :value-type      :string
+       :value-type      :byte-array
        :shape           :value
        :internal-config {"auto.offset.reset" "earliest"}})))
 

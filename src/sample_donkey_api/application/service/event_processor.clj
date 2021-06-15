@@ -26,11 +26,11 @@
   [mapper-fn message-producer]
   (let [mapper-fn (decorate-with-try mapper-fn)]
     (fn [req]
-      (if-let [m (mapper-fn req)]
-        (if (protocols/publish message-producer m)
+      (if-let [proto-class (mapper-fn req)]
+        (if (protocols/publish message-producer proto-class)
           SUCCESS-RESULT
           RESOURCE-EXHAUSTED-RESULT)
         ERROR-RESULT))))
 
 (defmethod ig/init-key :processor/stock-order [_ {:keys [message-producer]}]
-  (map-and-put-fn stock-order-mapper/request->map message-producer))
+  (map-and-put-fn stock-order-mapper/request->proto message-producer))

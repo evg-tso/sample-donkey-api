@@ -7,7 +7,7 @@ This is a sample Clojure web api that will:
 - Display a [swagger](https://swagger.io/) page.
 - Validate or reject http requests based on a schema.
 - Do an async http request to resolve the client's IP address.
-- Map the request to a Kafka message.
+- Map the request to a Kafka proto message.
 - Enqueue and publish that message.
 - Integration tests, relying on [testcontainers](https://www.testcontainers.org).
 
@@ -19,6 +19,7 @@ This is a sample Clojure web api that will:
 
 ## Installation
 
+    $ lein protodeps generate
     $ lein uberjar
 
 ## Usage
@@ -32,6 +33,7 @@ This is a sample Clojure web api that will:
 - [reitit](https://github.com/metosin/reitit) for routing requests.
 - [Integrant](https://github.com/weavejester/integrant) for state management.
 - [Ketu](https://github.com/appsflyer/ketu) as the Kafka library.
+- [lein-protodeps](https://github.com/AppsFlyer/lein-protodeps) to generate java classes from .proto files.
 
 ## Examples
 

@@ -1,8 +1,11 @@
+(def proto-version "3.17.1")
+
 (defproject sample-donkey-api "0.1.0-SNAPSHOT"
   :description "A sample Clojure http server"
   :url "https://github.com/evg-tso/sample-donkey-api"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
+  :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
                  [org.clojure/clojure "1.10.3"]
                  [org.clojure/core.async "1.3.618"]
@@ -30,15 +33,29 @@
                  ; Kafka messaging
                  [com.appsflyer/ketu "0.6.0"]
 
+                 ; Protobuf
+                 [com.google.protobuf/protobuf-java ~proto-version]
+
                  ; Other
                  [danlentz/clj-uuid "0.1.9"]]
   :main ^:skip-aot sample-donkey-api.core
   :target-path "target/%s"
+  :lein-protodeps {:output-path   "src/java/generated"
+                   :proto-version ~proto-version
+                   :compile-grpc? false
+                   :repos         {:local-proto {:repo-type    :filesystem
+                                                 :config       {:path ""}
+                                                 :proto-paths  ["schemas"]
+                                                 :dependencies [[""]]}}}
   :profiles {:uberjar {:aot      :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
              :dev     {:plugins      [[lein-eftest "0.5.9"]
-                                      [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]]
+                                      [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]
+
+                                      ; Protobuf
+                                      [com.appsflyer/lein-protodeps "1.0.1"]]
                        :dependencies [[clj-kondo "2021.06.01"]
+                                      [criterium "0.4.6"]
                                       [org.testcontainers/kafka "1.15.3"]
                                       [clj-test-containers "0.4.0"]
                                       [metosin/jsonista "0.3.3"]]

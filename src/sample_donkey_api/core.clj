@@ -22,7 +22,7 @@
 
 (defn -main  []
   (try
-    (logger/start-publisher! {:type :console})
+    (logger/start-publisher! {:type :console :pretty? true})
     (let [system-map (assembly/start-application)]
       (add-shutdown-hook #(assembly/stop-application system-map))
       (logger/log ::service-started :system-map system-map)

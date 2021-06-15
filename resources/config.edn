@@ -21,7 +21,7 @@
  :repository/stock-order-producer {:producer-config                {:name       "stocks-order-producer"
                                                                     :brokers    #dyn/prop ["KAFKA_BROKERS" "..."]
                                                                     :topic      "stocks_orders"
-                                                                    :value-type :string
+                                                                    :value-type :byte-array
                                                                     :shape      :value}
                                    :producer-channel-size-per-core #dyn/long #dyn/prop ["CHANNEL_SIZE_PER_CORE" "250"]}
  :processor/stock-order           {:message-producer #ig/ref :repository/stock-order-producer}}

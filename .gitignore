@@ -13,3 +13,5 @@ pom.xml.asc
 .idea
 *.iml
 .clj-kondo/.cache
+src/java/generated
+.lsp

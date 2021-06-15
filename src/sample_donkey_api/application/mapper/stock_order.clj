@@ -7,12 +7,6 @@
     "sell" (StocksOuterClass$Direction/SELL)
     (StocksOuterClass$Direction/UNKNOWN_DIRECTION)))
 
-{:continent_code "NA"
- :country_code   "US"
- :latitude       39.10771179199219
- :longitude      -94.53961181640625
- :region_code    "MO"}
-
 (defn- ^StocksOuterClass$IP map->proto-ip [m]
   (-> (StocksOuterClass$IP/newBuilder)
       (.setCountryCode (:country_code m))

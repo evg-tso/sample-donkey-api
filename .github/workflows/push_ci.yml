@@ -49,6 +49,8 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles( 'project.clj' ) }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: Generate proto files
+        run: lein protodeps generate
       - name: Unit tests
         env:
           IP_STACK_ACCESS_KEY: ${{ secrets.IP_STACK_ACCESS_KEY }}

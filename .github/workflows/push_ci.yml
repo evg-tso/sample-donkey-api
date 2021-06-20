@@ -56,7 +56,7 @@ jobs:
           IP_STACK_ACCESS_KEY: ${{ secrets.IP_STACK_ACCESS_KEY }}
         run: lein cloverage --html --lcov --junit
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1.17
+        uses: EnricoMi/publish-unit-test-result-action@v1.18
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

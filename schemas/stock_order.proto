@@ -19,7 +19,7 @@ message IP {
 }
 
 enum Direction {
-  UNKNOWN_DIRECTION = 0;
-  BUY = 1;
-  SELL = 2;
+  DIRECTION_UNSPECIFIED = 0;
+  DIRECTION_BUY = 1;
+  DIRECTION_SELL = 2;
 }

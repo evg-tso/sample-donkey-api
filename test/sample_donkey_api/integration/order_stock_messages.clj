@@ -26,7 +26,7 @@
 
 (def expected-msg-in-chan
   {:amount_usd 3.47
-   :direction  "buy"
+   :direction  "direction_buy"
    :ip         {:continent_code "NA"
                 :country_code   "US"
                 :latitude       39.10771179199219

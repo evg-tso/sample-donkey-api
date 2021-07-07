@@ -3,9 +3,9 @@
 
 (defn- string->direction-enum [s]
   (condp = s
-    "buy" (StocksOuterClass$Direction/BUY)
-    "sell" (StocksOuterClass$Direction/SELL)
-    (StocksOuterClass$Direction/UNKNOWN_DIRECTION)))
+    "buy" (StocksOuterClass$Direction/DIRECTION_BUY)
+    "sell" (StocksOuterClass$Direction/DIRECTION_SELL)
+    (StocksOuterClass$Direction/DIRECTION_UNSPECIFIED)))
 
 (defn- ^StocksOuterClass$IP map->proto-ip [m]
   (-> (StocksOuterClass$IP/newBuilder)

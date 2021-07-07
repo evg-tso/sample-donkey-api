@@ -94,7 +94,7 @@ jobs:
         run: lein cloverage --html --lcov --junit
 
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1.18
+        uses: EnricoMi/publish-unit-test-result-action@v1.19
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

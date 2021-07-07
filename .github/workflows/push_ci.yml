@@ -48,7 +48,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE: MARKDOWN,SPELL
           JAVA_CHECKSTYLE_FILTER_REGEX_EXCLUDE: generated
-          ENABLE_LINTERS: CLOJURE_CLJ_KONDO
           CLOJURE_CLJ_KONDO_FILTER_REGEX_INCLUDE: (src|lib)
 
       # Upload Mega-Linter artifacts

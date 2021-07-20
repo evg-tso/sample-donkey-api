@@ -56,7 +56,7 @@
                                       [com.appsflyer/lein-protodeps "1.0.1"]]
                        :dependencies [[clj-kondo "2021.06.18"]
                                       [criterium "0.4.6"]
-                                      [org.testcontainers/kafka "1.15.3"]
+                                      [org.testcontainers/kafka "1.16.0"]
                                       [clj-test-containers "0.4.0"]
                                       [metosin/jsonista "0.3.3"]]
                        :eftest       {:multithread?    false

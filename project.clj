@@ -20,7 +20,7 @@
                  ; HTTP server
                  [com.appsflyer/donkey "0.5.1"]
                  [metosin/reitit "0.5.13"]
-                 [ring/ring-core "1.9.3"]
+                 [ring/ring-core "1.9.4"]
 
                  ; State management
                  [integrant "0.8.0"]

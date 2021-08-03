@@ -54,7 +54,7 @@
 
                                       ; Protobuf
                                       [com.appsflyer/lein-protodeps "1.0.1"]]
-                       :dependencies [[clj-kondo "2021.07.28"]
+                       :dependencies [[clj-kondo "2021.08.03"]
                                       [criterium "0.4.6"]
                                       [org.testcontainers/kafka "1.16.0"]
                                       [clj-test-containers "0.4.0"]

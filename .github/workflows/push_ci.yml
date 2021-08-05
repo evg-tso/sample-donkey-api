@@ -1,7 +1,6 @@
 name: "GitHub CI"
 
 on:
-  push:
   pull_request:
     branches: [master]
 

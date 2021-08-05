@@ -1,12 +1,9 @@
 (ns sample-donkey-api.utils.config
   (:require [integrant.core :as ig]
-            [com.walmartlabs.dyn-edn :as dyn-edn]
-            [clojure.edn :as edn]
-            [clojure.java.io :as io]))
+            [cprop.core :as cprop]
+            [cprop.source]
+            cprop.tools))
 
 (defmethod ig/init-key :utils/config [_ _]
-  (->> "config.edn"
-       io/resource
-       slurp
-       (edn/read-string {:eof     nil
-                         :readers (dyn-edn/env-readers)})))
+  (cprop/load-config :merge [(cprop.source/from-env)
+                             (cprop.source/from-system-props)]))

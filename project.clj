@@ -24,7 +24,7 @@
 
                  ; State management
                  [integrant "0.8.0"]
-                 [com.walmartlabs/dyn-edn "0.2.0"]
+                 [cprop "0.1.18"]
 
                  ; Logging
                  [com.brunobonacci/mulog "0.8.0"]

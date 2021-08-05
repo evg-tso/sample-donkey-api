@@ -63,7 +63,6 @@ export HTTP_SERVER__EXTERNAL__PORT=8080
       "direction": "buy"
       }'
 
-
 ## Testing
 
 - `lein test` - To run all unit tests.

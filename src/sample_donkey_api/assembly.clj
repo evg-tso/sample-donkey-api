@@ -10,21 +10,17 @@
             [sample-donkey-api.http.external.routes]
             [sample-donkey-api.http.external.controller]
             [clojure.java.io :as io]
-            [com.walmartlabs.dyn-edn :as dyn-edn]
-            [clojure.edn :as edn]
+            [sample-donkey-api.utils.config]
             [sample-donkey-api.http.client]
             [sample-donkey-api.infrastructure.repository.ip-resolver]
             [sample-donkey-api.infrastructure.repository.kafka-producer]
             [sample-donkey-api.application.service.event-processor]))
 
 (defn start-application []
-  (let [states-map (->> "config.edn"
+  (let [states-map (->> "states.edn"
                         io/resource
                         slurp
-                        (edn/read-string {:eof     nil
-                                          :readers (merge (dyn-edn/env-readers)
-                                                          {'ig/ref    ig/ref
-                                                           'ig/refset ig/refset})}))]
+                        ig/read-string)]
     (ig/init states-map)))
 
 (defn stop-application [system-map]

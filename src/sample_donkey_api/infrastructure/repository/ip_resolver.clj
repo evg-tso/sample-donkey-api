@@ -35,5 +35,6 @@
                 :body
                 json/parse)))))
 
-(defmethod ig/init-key :repository/ip-resolver [_ {:keys [http-client access-key url-template]}]
-  (IPStackResolver. http-client access-key url-template))
+(defmethod ig/init-key :repository/ip-resolver [_ {:keys [http-client config]}]
+  (IPStackResolver. http-client (-> config :ip-resolver :access-key)
+                    (-> config :ip-resolver :url-template)))

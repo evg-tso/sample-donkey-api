@@ -4,15 +4,14 @@
             [com.appsflyer.donkey.server :as donkey-server]
             [com.brunobonacci.mulog :as logger]))
 
-(defn- start-server [donkey router config]
-  (let [port          (:port config)
-        server-config {:port                 port
+(defn- start-server [donkey router port]
+  (let [server-config {:port                 port
                        :idle-timeout-seconds 5
                        :routes               router}]
     (server-common/create-server donkey server-config)))
 
-(defmethod ig/init-key :internal/server [_ {:keys [donkey router] :as config}]
-  (start-server donkey router config))
+(defmethod ig/init-key :internal/server [_ {:keys [donkey router config]}]
+  (start-server donkey router (-> config :http-server :internal :port)))
 
 (defmethod ig/halt-key! :internal/server [_ server]
   (logger/log ::server-stopped)

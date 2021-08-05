@@ -1,7 +1,6 @@
 name: "GitHub CI"
 
 on:
-  push:
   pull_request:
     branches: [master]
 
@@ -90,7 +89,7 @@ jobs:
 
       - name: Unit tests
         env:
-          IP_STACK_ACCESS_KEY: ${{ secrets.IP_STACK_ACCESS_KEY }}
+          IP_RESOLVER__ACCESS_KEY: ${{ secrets.IP_RESOLVER__ACCESS_KEY }}
         run: lein cloverage --html --lcov --junit
 
       - name: Publish Unit Test Results

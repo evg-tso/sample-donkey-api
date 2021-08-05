@@ -26,18 +26,31 @@ This is a sample Clojure web api that will:
 
     $ java -jar sample-donkey-api-0.1.0-standalone.jar
 
+### Configuration
+
+The configuration is loaded using [tolitius/cprop](https://github.com/tolitius/cprop), so all of it can be with:
+```shell
+export KAFKA__STOCK_ORDER__PRODUCER__CHANNEL_SIZE_PER_CORE=250
+export KAFKA__STOCK_ORDER__PRODUCER__CONFIG__BROKERS=my-broker:9093
+export IP_RESOLVER__ACCESS_KEY=CHANGE ME
+export HTTP_SERVER__INTERNAL__PORT=8081
+export HTTP_SERVER__EXTERNAL__PORT=8080
+```
+
 ## Used libraries
+
 - [Donkey](https://github.com/appsflyer/donkey) as the http server.
 - [clj-test-containers](https://github.com/javahippie/clj-test-containers) for integration tests.
 - [malli](https://github.com/metosin/malli) for request validation.
 - [reitit](https://github.com/metosin/reitit) for routing requests.
 - [Integrant](https://github.com/weavejester/integrant) for state management.
+- [tolitius/cprop](https://github.com/tolitius/cprop) for dynamic configuration.
 - [Ketu](https://github.com/appsflyer/ketu) as the Kafka library.
 - [lein-protodeps](https://github.com/AppsFlyer/lein-protodeps) to generate java classes from .proto files.
 
 ## Examples
 
-    $ export KAFKA_BROKER=my-broker:9092
+    $ export KAFKA__STOCK_ORDER__PRODUCER__CONFIG__BROKERS=my-broker:9092
     $ lein uberjar
     $ java -jar target/uberjar/sample-donkey-api-0.1.0-SNAPSHOT-standalone.jar
     .. in another terminal session
@@ -49,7 +62,6 @@ This is a sample Clojure web api that will:
       "ip": "35.244.183.10",
       "direction": "buy"
       }'
-
 
 ## Testing
 

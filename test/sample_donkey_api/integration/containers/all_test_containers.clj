@@ -7,6 +7,6 @@
 
 (defn with-test-containers [test-fn]
   (let [kafka-container (kafka-setup/start-container)]
-    (System/setProperty "kafka_stock.order_producer_config_brokers" (kafka-setup/get-bootstrap-servers kafka-container))
+    (System/setProperty "KAFKA_BROKERS" (kafka-setup/get-bootstrap-servers kafka-container))
     (test-fn)
     (stop-containers! [kafka-container])))

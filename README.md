@@ -28,13 +28,14 @@ This is a sample Clojure web api that will:
 
 ### Configuration
 
-The configuration is loaded using [tolitius/cprop](https://github.com/tolitius/cprop), so all of it can be with:
+The configuration is loaded using [walmartlabs/dyn-edn](https://github.com/walmartlabs/dyn-edn).  
+These parts are configurable:
 ```shell
-export KAFKA__STOCK_ORDER__PRODUCER__CHANNEL_SIZE_PER_CORE=250
-export KAFKA__STOCK_ORDER__PRODUCER__CONFIG__BROKERS=my-broker:9093
-export IP_RESOLVER__ACCESS_KEY=CHANGE ME
-export HTTP_SERVER__INTERNAL__PORT=8081
-export HTTP_SERVER__EXTERNAL__PORT=8080
+export CHANNEL_SIZE_PER_CORE=250
+export KAFKA_BROKERS=my-broker:9093
+export IP_STACK_ACCESS_KEY=CHANGE ME
+export INTERNAL_PORT=8081
+export EXTERNAL_PORT=8080
 ```
 
 ## Used libraries
@@ -44,13 +45,13 @@ export HTTP_SERVER__EXTERNAL__PORT=8080
 - [malli](https://github.com/metosin/malli) for request validation.
 - [reitit](https://github.com/metosin/reitit) for routing requests.
 - [Integrant](https://github.com/weavejester/integrant) for state management.
-- [tolitius/cprop](https://github.com/tolitius/cprop) for dynamic configuration.
+- [walmartlabs/dyn-edn](https://github.com/walmartlabs/dyn-edn) for dynamic configuration.
 - [Ketu](https://github.com/appsflyer/ketu) as the Kafka library.
 - [lein-protodeps](https://github.com/AppsFlyer/lein-protodeps) to generate java classes from .proto files.
 
 ## Examples
 
-    $ export KAFKA__STOCK_ORDER__PRODUCER__CONFIG__BROKERS=my-broker:9092
+    $ export KAFKA_BROKERS=my-broker:9092
     $ lein uberjar
     $ java -jar target/uberjar/sample-donkey-api-0.1.0-SNAPSHOT-standalone.jar
     .. in another terminal session

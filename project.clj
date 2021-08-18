@@ -57,7 +57,7 @@
                        :dependencies [[clj-kondo "2021.08.06"]
                                       [criterium "0.4.6"]
                                       [org.testcontainers/kafka "1.16.0"]
-                                      [clj-test-containers "0.4.0"]
+                                      [clj-test-containers "0.5.0"]
                                       [metosin/jsonista "0.3.3"]]
                        :eftest       {:multithread?    false
                                       :capture-output? false

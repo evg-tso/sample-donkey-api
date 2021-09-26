@@ -1,4 +1,4 @@
-(def proto-version "3.17.3")
+(def proto-version "3.18.0")
 
 (defproject sample-donkey-api "0.1.0-SNAPSHOT"
   :description "A sample Clojure http server"
@@ -8,7 +8,7 @@
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
                  [org.clojure/clojure "1.10.3"]
-                 [org.clojure/core.async "1.3.618"]
+                 [org.clojure/core.async "1.3.622"]
 
                  ; Validation
                  [metosin/malli "0.6.1"]
@@ -27,7 +27,7 @@
                  [com.walmartlabs/dyn-edn "0.2.0"]
 
                  ; Logging
-                 [com.brunobonacci/mulog "0.8.0"]
+                 [com.brunobonacci/mulog "0.8.1"]
                  [nonseldiha/slf4j-mulog "0.2.1"]
 
                  ; Kafka messaging
@@ -54,11 +54,11 @@
 
                                       ; Protobuf
                                       [com.appsflyer/lein-protodeps "1.0.1"]]
-                       :dependencies [[clj-kondo "2021.08.06"]
+                       :dependencies [[clj-kondo "2021.09.25"]
                                       [criterium "0.4.6"]
                                       [org.testcontainers/kafka "1.16.0"]
-                                      [clj-test-containers "0.4.0"]
-                                      [metosin/jsonista "0.3.3"]]
+                                      [clj-test-containers "0.5.0"]
+                                      [metosin/jsonista "0.3.4"]]
                        :eftest       {:multithread?    false
                                       :capture-output? false
                                       :report          eftest.report.junit/report

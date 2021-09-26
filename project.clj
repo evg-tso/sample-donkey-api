@@ -58,7 +58,7 @@
                                       [criterium "0.4.6"]
                                       [org.testcontainers/kafka "1.16.0"]
                                       [clj-test-containers "0.5.0"]
-                                      [metosin/jsonista "0.3.3"]]
+                                      [metosin/jsonista "0.3.4"]]
                        :eftest       {:multithread?    false
                                       :capture-output? false
                                       :report          eftest.report.junit/report

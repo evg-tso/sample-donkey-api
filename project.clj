@@ -8,7 +8,7 @@
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
                  [org.clojure/clojure "1.10.3"]
-                 [org.clojure/core.async "1.3.618"]
+                 [org.clojure/core.async "1.3.622"]
 
                  ; Validation
                  [metosin/malli "0.6.1"]

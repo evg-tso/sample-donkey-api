@@ -2,22 +2,12 @@
   (:require [sample-donkey-api.integration.containers.kafka-setup :as kafka-setup]
             [clojure.core.async :as async]
             [com.brunobonacci.mulog :as logger]
-            [clojure.string :as s])
-  (:import (stocks StocksOuterClass$StockOrder StocksOuterClass$IP)))
+            [pronto.core :as pronto]
+            [sample-donkey-api.application.mapper.proto-definitions :as proto-defs])
+  (:import (stocks StocksOuterClass$StockOrder)))
 
 (def stock-order-channel (async/chan 100
-                                     (comp
-                                       (map #(StocksOuterClass$StockOrder/parseFrom ^bytes %))
-                                       (map (fn [^StocksOuterClass$StockOrder stock-order]
-                                              {:amount_usd (.getAmountUsd stock-order)
-                                               :request_id (.getRequestId stock-order)
-                                               :ip         {:continent_code (-> stock-order ^StocksOuterClass$IP .getIp .getContinentCode)
-                                                            :country_code   (-> stock-order ^StocksOuterClass$IP .getIp .getCountryCode)
-                                                            :latitude       (-> stock-order ^StocksOuterClass$IP .getIp .getLatitude)
-                                                            :longitude      (-> stock-order ^StocksOuterClass$IP .getIp .getLongitude)
-                                                            :region_code    (-> stock-order ^StocksOuterClass$IP .getIp .getRegionCode)}
-                                               :direction  (-> stock-order .getDirection .name s/lower-case)
-                                               :stock_id   (.getStockId stock-order)})))
+                                     (map #(pronto/bytes->proto-map proto-defs/proto-mapper StocksOuterClass$StockOrder %))
                                      #(logger/log ::error-mapping-kafka-message :exception %)))
 
 (defn with-kafka-consumers [test-fn]

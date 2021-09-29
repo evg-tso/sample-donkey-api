@@ -40,14 +40,15 @@ export EXTERNAL_PORT=8080
 
 ## Used libraries
 
-- [Donkey](https://github.com/appsflyer/donkey) as the http server.
+- [AppsFlyer/Donkey](https://github.com/appsflyer/donkey) as the http server.
 - [clj-test-containers](https://github.com/javahippie/clj-test-containers) for integration tests.
-- [malli](https://github.com/metosin/malli) for request validation.
-- [reitit](https://github.com/metosin/reitit) for routing requests.
+- [Metosin/malli](https://github.com/metosin/malli) for request validation.
+- [Metosin/reitit](https://github.com/metosin/reitit) for routing requests.
 - [Integrant](https://github.com/weavejester/integrant) for state management.
 - [walmartlabs/dyn-edn](https://github.com/walmartlabs/dyn-edn) for dynamic configuration.
-- [Ketu](https://github.com/appsflyer/ketu) as the Kafka library.
-- [lein-protodeps](https://github.com/AppsFlyer/lein-protodeps) to generate java classes from .proto files.
+- [AppsFlyer/Ketu](https://github.com/appsflyer/ketu) as the Kafka library.
+- [AppsFlyer/lein-protodeps](https://github.com/AppsFlyer/lein-protodeps) to generate java classes from .proto files.
+- [AppsFlyer/pronto](https://github.com/AppsFlyer/pronto) to use protobuf simply in Clojure.
 
 ## Examples
 
@@ -66,9 +67,7 @@ export EXTERNAL_PORT=8080
 
 ## Testing
 
-- `lein test` - To run all unit tests.
-- `lein test :integration` - To run all integration tests.
-- `lein test :all` - To run all types of tests.
+- `lein test` - To run all unit & integration tests.
 
 ## License
 

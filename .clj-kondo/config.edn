@@ -2,7 +2,10 @@
            :unused-binding      {:level :error}
            :unused-namespace    {:level :error}
            :unused-referred-var {:level :error}
-           :consistent-alias    {:aliases {clojure.string         s
-                                           com.brunobonacci.mulog logger
-                                           integrant.core         ig
-                                           clojure.core.async     async}}}}
+           :consistent-alias    {:aliases {clojure.string                                         s
+                                           com.brunobonacci.mulog                                 logger
+                                           integrant.core                                         ig
+                                           clojure.core.async                                     async
+                                           sample-donkey-api.application.mapper.proto-definitions proto-defs}}}
+ :lint-as {pronto.core/defmapper clojure.core/def
+           pronto.core/pcond->   clojure.core/cond->}}

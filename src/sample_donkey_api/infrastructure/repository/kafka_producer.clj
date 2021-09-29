@@ -3,8 +3,8 @@
             [ketu.async.sink :as sink]
             [clojure.core.async :as async]
             [com.brunobonacci.mulog :as logger]
-            [integrant.core :as ig])
-  (:import (com.google.protobuf Message)))
+            [integrant.core :as ig]
+            [pronto.core :as pronto]))
 
 (deftype ^:private KafkaProducer [channel producer]
   protocols/IMessagePublisher
@@ -20,7 +20,7 @@
         serialized-channel   (async/chan channel-size)]
     (async/pipeline available-processors
                     serialized-channel
-                    (map #(.toByteArray ^Message %))
+                    (map pronto/proto-map->bytes)
                     in-channel
                     true
                     #(logger/log ::error-mapping-kafka-message :exception %))

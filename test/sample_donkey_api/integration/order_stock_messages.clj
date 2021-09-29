@@ -25,12 +25,12 @@
               "Connection"        "keep-alive"}}))
 
 (def expected-msg-in-chan
-  {:amount_usd 3.47
-   :direction  "direction_buy"
-   :ip         {:continent_code "NA"
-                :country_code   "US"
+  {:amount-usd 3.47
+   :direction  :direction-buy
+   :ip         {:continent-code "NA"
+                :country-code   "US"
                 :latitude       39.10771179199219
                 :longitude      -94.53961181640625
-                :region_code    "MO"}
-   :request_id "71dad7da-7926-40d8-9b15-b94a6d46e15a"
-   :stock_id   "AAPL"})
+                :region-code    "MO"}
+   :request-id "71dad7da-7926-40d8-9b15-b94a6d46e15a"
+   :stock-id   "AAPL"})

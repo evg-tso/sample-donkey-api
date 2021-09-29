@@ -1,28 +1,27 @@
 (ns sample-donkey-api.application.mapper.stock-order
-  (:import (stocks StocksOuterClass$StockOrder StocksOuterClass$Direction StocksOuterClass$IP)))
+  (:require [pronto.core :as pronto]
+            [sample-donkey-api.application.mapper.proto-definitions :as proto-defs])
+  (:import (stocks StocksOuterClass$StockOrder StocksOuterClass$IP)))
 
-(defn- string->direction-enum [s]
+(defn- string->direction-keyword [s]
   (condp = s
-    "buy" (StocksOuterClass$Direction/DIRECTION_BUY)
-    "sell" (StocksOuterClass$Direction/DIRECTION_SELL)
-    (StocksOuterClass$Direction/DIRECTION_UNSPECIFIED)))
+    "buy" :direction-buy
+    "sell" :direction-sell
+    :direction-unspecified))
 
-(defn- ^StocksOuterClass$IP map->proto-ip [m]
-  (-> (StocksOuterClass$IP/newBuilder)
-      (.setCountryCode (:country_code m))
-      (.setRegionCode (:region_code m))
-      (.setLatitude (:latitude m))
-      (.setLongitude (:longitude m))
-      (.setContinentCode (:continent_code m))
-      .build))
+(defn- map->proto-ip [m]
+  (pronto/proto-map proto-defs/proto-mapper StocksOuterClass$IP
+                    :country-code (:country_code m)
+                    :region-code (:region_code m)
+                    :latitude (:latitude m)
+                    :longitude (:longitude m)
+                    :continent-code (:continent_code m)))
 
 (defn request->proto [req]
-  (let [builder (-> (StocksOuterClass$StockOrder/newBuilder)
-                    (.setStockId (-> req :path-params :stock-id))
-                    (.setAmountUsd (-> req :body-params :amount_usd))
-                    (.setDirection (-> req :body-params :direction string->direction-enum)))]
-    (when (some? (-> req :body-params :request_id))
-      (.setRequestId builder (-> req :body-params :request_id)))
-    (when (some? (-> req :sample/resolved-ip))
-      (.setIp builder (-> req :sample/resolved-ip map->proto-ip)))
-    (.build builder)))
+  (pronto/pcond-> (pronto/proto-map proto-defs/proto-mapper
+                                    StocksOuterClass$StockOrder
+                                    :amount-usd (-> req :body-params :amount_usd)
+                                    :stock-id (-> req :path-params :stock-id)
+                                    :direction (-> req :body-params :direction string->direction-keyword))
+                  (some? (-> req :body-params :request_id)) (assoc :request-id (-> req :body-params :request_id))
+                  (some? (-> req :sample/resolved-ip)) (assoc :ip (-> req :sample/resolved-ip map->proto-ip))))

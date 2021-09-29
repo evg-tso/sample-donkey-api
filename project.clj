@@ -53,7 +53,7 @@
                                       [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]
 
                                       ; Protobuf
-                                      [com.appsflyer/lein-protodeps "1.0.1"]]
+                                      [com.appsflyer/lein-protodeps "1.0.2"]]
                        :dependencies [[clj-kondo "2021.09.25"]
                                       [criterium "0.4.6"]
                                       [org.testcontainers/kafka "1.16.0"]

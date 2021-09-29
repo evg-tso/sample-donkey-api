@@ -6,6 +6,7 @@
                                            com.brunobonacci.mulog                                 logger
                                            integrant.core                                         ig
                                            clojure.core.async                                     async
+                                           pronto.core                                            pronto
                                            sample-donkey-api.application.mapper.proto-definitions proto-defs}}}
  :lint-as {pronto.core/defmapper clojure.core/def
            pronto.core/pcond->   clojure.core/cond->}}

@@ -10,6 +10,9 @@
                  [org.clojure/clojure "1.10.3"]
                  [org.clojure/core.async "1.3.622"]
 
+                 ; Async
+                 [funcool/promesa "6.0.2"]
+
                  ; Validation
                  [metosin/malli "0.6.2"]
                  [commons-validator/commons-validator "1.7"]

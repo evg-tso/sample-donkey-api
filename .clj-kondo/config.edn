@@ -7,6 +7,7 @@
                                            integrant.core                                         ig
                                            clojure.core.async                                     async
                                            pronto.core                                            pronto
-                                           sample-donkey-api.application.mapper.proto-definitions proto-defs}}}
+                                           sample-donkey-api.application.mapper.proto-definitions proto-defs
+                                           promesa.core                                           p}}}
  :lint-as {pronto.core/defmapper clojure.core/def
            pronto.core/pcond->   clojure.core/cond->}}

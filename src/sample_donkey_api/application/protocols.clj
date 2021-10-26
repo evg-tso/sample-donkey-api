@@ -5,7 +5,7 @@
   (explain [this request] "If the request is invalid, returns a map of all the field with errors"))
 
 (defprotocol IIPResolver
-  (resolve-ip [this ip] "Returns the resolved IP as a map, or nil"))
+  (resolve-ip [this ip] "Returns the resolved IP as a Future of a map, or a completed Future"))
 
 (defprotocol IMessagePublisher
   (publish [this message] "Publishes an event, expected to return true if accepted")

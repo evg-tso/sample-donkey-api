@@ -13,8 +13,8 @@ This is a sample Clojure web api that will:
 
 
 ## Requirements
-- [Java](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
-  11+
+- [Java](https://www.oracle.com/java/technologies/downloads/#JDK17)
+  17+
 - [Leiningen](https://leiningen.org/) 2.9.3+
 
 ## Installation

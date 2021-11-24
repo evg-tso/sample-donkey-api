@@ -12,8 +12,8 @@
 (deftype ^:private KafkaProducer [producer bytes->ProducerRecord-fn]
   protocols/IMessagePublisher
   (publish-stock-order [_ message-bytes]
-    (-> (jc/send! producer ^ProducerRecord (bytes->ProducerRecord-fn message-bytes))
-        (p/then (constantly true))))
+    (jc/send! producer ^ProducerRecord (bytes->ProducerRecord-fn message-bytes))
+    (p/resolved true))
   (close! [_]
     (.close ^Producer producer (Duration/ofSeconds 5))))
 

@@ -40,7 +40,7 @@
   If the value does not come in during that period, returns :timed-out. If
   milliseconds is not given, a default of 1000 is used."
   ([chan]
-   (<!!? chan 1000))
+   (<!!? chan 2000))
   ([chan milliseconds]
    (let [timeout (async/timeout milliseconds)
          [value port] (async/alts!! [chan timeout])]

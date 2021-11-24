@@ -8,7 +8,7 @@
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
                  [org.clojure/clojure "1.10.3"]
-                 [org.clojure/core.async "1.5.640"]
+                 [org.clojure/core.async "1.5.640" :exclusions [org.clojure/tools.reader]]
 
                  ; Async
                  [funcool/promesa "6.0.2"]
@@ -21,8 +21,8 @@
                  [commons-codec/commons-codec "1.15"]
 
                  ; HTTP server
-                 [com.appsflyer/donkey "0.5.1"]
-                 [metosin/reitit "0.5.15"]
+                 [com.appsflyer/donkey "0.5.1" :exclusions [metosin/jsonista]]
+                 [metosin/reitit "0.5.15" :exclusions [org.clojure/tools.reader]]
                  [ring/ring-core "1.9.4"]
 
                  ; State management
@@ -34,14 +34,15 @@
                  [nonseldiha/slf4j-mulog "0.2.1"]
 
                  ; Kafka messaging
-                 [com.appsflyer/ketu "0.6.0"]
+                 [com.appsflyer/ketu "0.6.0" :exclusions [expound]]
 
                  ; Protobuf
                  [com.google.protobuf/protobuf-java ~proto-version]
-                 [com.appsflyer/pronto "2.0.9"]
+                 [com.appsflyer/pronto "2.0.9" :exclusions [riddley]]
 
                  ; Other
                  [danlentz/clj-uuid "0.1.9"]]
+  :pedantic? :abort
   :main ^:skip-aot sample-donkey-api.core
   :target-path "target/%s"
   :lein-protodeps {:output-path   "src/java/generated"
@@ -60,9 +61,13 @@
                                       [com.appsflyer/lein-protodeps "1.0.2"]]
                        :dependencies [[clj-kondo "2021.10.19"]
                                       [criterium "0.4.6"]
-                                      [org.testcontainers/kafka "1.16.2"]
-                                      [clj-test-containers "0.5.0"]
-                                      [metosin/jsonista "0.3.4"]]
+
+                                      ; Code coverage
+                                      [cloverage "1.2.2" :exclusions [org.clojure/tools.reader]]
+
+                                      ; test containers
+                                      [clj-test-containers "0.5.0" :exclusions [org.testcontainers/testcontainers]]
+                                      [org.testcontainers/kafka "1.16.2" :exclusions [org.slf4j/slf4j-api]]]
                        :eftest       {:multithread?    false
                                       :capture-output? false
                                       :report          eftest.report.junit/report

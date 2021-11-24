@@ -1,6 +1,7 @@
 (ns sample-donkey-api.http.external.controller
   (:require [sample-donkey-api.http.protocols :as protocols]
-            [integrant.core :as ig]))
+            [integrant.core :as ig]
+            [promesa.core :as p]))
 
 (def ^:private ^:const accepted-response {:status 202})
 (def ^:private ^:const internal-error-response {:status 500})
@@ -12,13 +13,10 @@
 
 (deftype ^:private HttpExternalController [stock-order-processor]
   protocols/IExternalController
-  (order-stock [_ _]
-    accepted-response)
   (order-stock [_ req respond _]
-    (-> req
-        stock-order-processor
-        handle-result
-        respond)))
+    (-> (stock-order-processor req)
+        (p/then (fn [result]
+                  (respond (handle-result result)))))))
 
 (defmethod ig/init-key :external/controller [_ {:keys [stock-order-processor]}]
   (HttpExternalController. stock-order-processor))

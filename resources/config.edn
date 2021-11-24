@@ -2,9 +2,10 @@
                :internal {:port #dyn/long #dyn/prop ["INTERNAL_PORT" "8081"]}}
  :ip-resolver {:access-key   #dyn/prop IP_STACK_ACCESS_KEY
                :url-template "http://api.ipstack.com/%s?access_key=%s&output=json&fields=country_code,region_code,latitude,longitude,continent_code"}
- :kafka       {:stock-order {:producer {:config                {:name       "stocks-order-producer"
-                                                                :brokers    #dyn/prop "KAFKA_BROKERS"
-                                                                :topic      "stocks_orders"
-                                                                :value-type :byte-array
-                                                                :shape      :value}
-                                        :channel-size-per-core #dyn/long #dyn/prop ["CHANNEL_SIZE_PER_CORE" "250"]}}}}
+ :kafka       {:stock-order {:producer {:config {"bootstrap.servers" #dyn/prop "KAFKA_BROKERS"
+                                                 "key.serializer"    "org.apache.kafka.common.serialization.ByteArraySerializer"
+                                                 "value.serializer"  "org.apache.kafka.common.serialization.ByteArraySerializer"
+                                                 "acks"              "1"
+                                                 "compression.type"  "gzip"
+                                                 "client.id"         "stocks-order-producer"}
+                                        :topic  "stocks_orders"}}}}

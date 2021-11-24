@@ -2,11 +2,10 @@
   (:require [integrant.core :as ig]
             [com.brunobonacci.mulog :as logger]
             [sample-donkey-api.application.mapper.stock-order :as stock-order-mapper]
-            [sample-donkey-api.application.protocols :as protocols]))
+            [sample-donkey-api.application.protocols :as protocols]
+            [promesa.core :as p]))
 
 (def ^:private ^:const SUCCESS-RESULT {:result :success})
-(def ^:private ^:const RESOURCE-EXHAUSTED-RESULT {:result :failure
-                                                  :reason :resource-exhausted})
 (def ^:private ^:const ERROR-RESULT {:result :failure
                                      :reason :error})
 
@@ -20,17 +19,17 @@
 
 (defn map-and-put-fn
   "Returns a pure function of type 'req -> result' that maps the request to proto bytes
-   and puts then the output-chan.
-   The result will be a {:result :success} map for successes
-   or for failures a {:result :failure :reason :SOME_KEYWORD}"
+   and publishes the proto bytes to the supplied message-producer.
+   The result will be a future of {:result :success} map for successes
+   or for failures a future of {:result :failure :reason :error}"
   [mapper-fn message-producer]
   (let [mapper-fn (decorate-with-try mapper-fn)]
     (fn [req]
       (if-let [proto-bytes (mapper-fn req)]
-        (if (protocols/publish message-producer proto-bytes)
-          SUCCESS-RESULT
-          RESOURCE-EXHAUSTED-RESULT)
-        ERROR-RESULT))))
+        (-> (protocols/publish-stock-order message-producer proto-bytes)
+            (p/then (constantly SUCCESS-RESULT))
+            (p/catch (constantly ERROR-RESULT)))
+        (p/resolved ERROR-RESULT)))))
 
 (defmethod ig/init-key :processor/stock-order [_ {:keys [message-producer]}]
   (map-and-put-fn stock-order-mapper/request->proto-bytes message-producer))

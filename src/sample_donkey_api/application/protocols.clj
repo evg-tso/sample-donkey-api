@@ -8,5 +8,5 @@
   (resolve-ip [this ip] "Returns the resolved IP as a Future of a map, or a completed Future"))
 
 (defprotocol IMessagePublisher
-  (publish [this message] "Publishes an event, expected to return true if accepted")
+  (publish-stock-order [this stock-order-proto-bytes] "Publish a stock order event, expected to return a truthy promise")
   (close! [this] "Closes the output"))

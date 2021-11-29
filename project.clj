@@ -38,7 +38,7 @@
 
                  ; Protobuf
                  [com.google.protobuf/protobuf-java ~proto-version]
-                 [com.appsflyer/pronto "2.0.9" :exclusions [riddley]]
+                 [com.appsflyer/pronto "2.0.10" :exclusions [riddley]]
 
                  ; Other
                  [danlentz/clj-uuid "0.1.9"]]

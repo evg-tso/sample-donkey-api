@@ -59,7 +59,7 @@
 
                                       ; Protobuf
                                       [com.appsflyer/lein-protodeps "1.0.2"]]
-                       :dependencies [[clj-kondo "2021.10.19"]
+                       :dependencies [[clj-kondo "2021.12.01"]
                                       [criterium "0.4.6"]
 
                                       ; Code coverage

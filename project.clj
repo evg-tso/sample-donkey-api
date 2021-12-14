@@ -8,7 +8,7 @@
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
                  [org.clojure/clojure "1.10.3"]
-                 [org.clojure/core.async "1.5.640" :exclusions [org.clojure/tools.reader]]
+                 [org.clojure/core.async "1.5.648" :exclusions [org.clojure/tools.reader]]
 
                  ; Async
                  [funcool/promesa "6.0.2"]

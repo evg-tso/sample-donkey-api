@@ -14,7 +14,7 @@
                  [funcool/promesa "6.0.2"]
 
                  ; Validation
-                 [metosin/malli "0.6.2"]
+                 [metosin/malli "0.7.5"]
                  [commons-validator/commons-validator "1.7"]
 
                  ; Authorization

@@ -6,8 +6,7 @@
             [promesa.core :as p]))
 
 (def ^:private ^:const SUCCESS-RESULT {:result :success})
-(def ^:private ^:const ERROR-RESULT {:result :failure
-                                     :reason :error})
+(def ^:private ^:const ERROR-RESULT {:result :failure})
 
 (defn- decorate-with-try [mapper-fn]
   (fn [req]
@@ -21,7 +20,7 @@
   "Returns a pure function of type 'req -> result' that maps the request to proto bytes
    and publishes the proto bytes to the supplied message-producer.
    The result will be a future of {:result :success} map for successes
-   or for failures a future of {:result :failure :reason :error}"
+   or for failures a future of {:result :failure}"
   [mapper-fn message-producer]
   (let [mapper-fn (decorate-with-try mapper-fn)]
     (fn [req]

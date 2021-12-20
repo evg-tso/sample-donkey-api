@@ -40,6 +40,9 @@ jobs:
       - name: Generate proto files
         run: lein with-profile uberjar protodeps generate
 
+      - name: Cljstyle linting
+        run: lein do clean, lint, cljstyle check
+
       - name: Build uberjar
         run: lein uberjar
 

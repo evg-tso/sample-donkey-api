@@ -71,5 +71,4 @@
                                       :capture-output? false
                                       :report          eftest.report.junit/report
                                       :report-to-file  "target/junit.xml"}
-                       :aliases      {"lint"     ["run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel"]
-                                      "cljstyle" ["run" "-m" "cljstyle.main"]}}})
+                       :aliases      {"lint" ["do" "run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel" "," "run" "-m" "cljstyle.main" "check"]}}})

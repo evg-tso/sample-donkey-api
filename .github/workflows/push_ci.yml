@@ -41,7 +41,7 @@ jobs:
         run: lein protodeps generate
 
       - name: Run linters
-        run: lein do clean, lint, cljstyle check
+        run: lein lint
 
       - name: Build uberjar
         run: lein uberjar

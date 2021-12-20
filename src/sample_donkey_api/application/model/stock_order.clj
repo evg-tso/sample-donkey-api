@@ -7,13 +7,17 @@
 
 (def ^:private ^InetAddressValidator inet-address-validator (InetAddressValidator/getInstance))
 
-(def ^:private NonEmptyString [:string {:min 1}])
+(def ^:private NonEmptyString
+  (malli/schema
+    [:string {:min 1}]))
 
-(def ^:private StockID [:and
-                        {:description         "This is the stock ID"
-                         :json-schema/example "AAPL"}
-                        NonEmptyString
-                        [:fn {:error/message "should be alphanumeric"} validation/alphanumeric?]])
+(def ^:private StockID
+  (malli/schema
+    [:and
+     {:description         "This is the stock ID"
+      :json-schema/example "AAPL"}
+     NonEmptyString
+     [:fn {:error/message "should be alphanumeric"} validation/alphanumeric?]]))
 
 (defn- valid-big-decimal? [x]
   (instance? BigDecimal x))
@@ -25,11 +29,13 @@
      :type-properties {:json-schema/type   "number"
                        :json-schema/format "double"}}))
 
-(def ^:private AmountUSD [:and
-                          {:description         "The amount to buy/sell"
-                           :json-schema/example 3.47}
-                          PreciseFloatingNumber
-                          [:not= 0]])
+(def ^:private AmountUSD
+  (malli/schema
+    [:and
+     {:description         "The amount to buy/sell"
+      :json-schema/example 3.47}
+     PreciseFloatingNumber
+     [:not= 0]]))
 
 (def ^:private RequestID
   (malli/schema
@@ -49,23 +55,31 @@
                        :json-schema/example "35.244.183.10"
                        :description         "The device IP Address"}}))
 
-(def ^:private Direction [:enum
-                          {:json-schema/example "buy"
-                           :json-schema/type    "string"
-                           :description         "The direction of the operation, buy or sell"}
-                          "buy" "sell"])
+(def ^:private Direction
+  (malli/schema
+    [:enum
+     {:json-schema/example "buy"
+      :json-schema/type    "string"
+      :description         "The direction of the operation, buy or sell"}
+     "buy" "sell"]))
 
-(def path [:map [:stock-id StockID]])
+(def path
+  (malli/schema
+    [:map [:stock-id StockID]]))
 
-(def body [:map
-           [:amount_usd AmountUSD]
-           [:request_id {:optional true} RequestID]
-           [:ip IP]
-           [:direction Direction]])
+(def body
+  (malli/schema
+    [:map
+     [:amount_usd AmountUSD]
+     [:request_id {:optional true} RequestID]
+     [:ip IP]
+     [:direction Direction]]))
 
-(def request [:map
-              [:path-params path]
-              [:body-params body]])
+(def request
+  (malli/schema
+    [:map
+     [:path-params path]
+     [:body-params body]]))
 
 (defmethod ig/init-key :model/create-stock-order [_ _]
   request)

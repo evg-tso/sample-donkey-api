@@ -1,9 +1,10 @@
 (ns sample-donkey-api.utils.json
   (:require [jsonista.core :as json]))
 
-(def ^:private json-mapper (json/object-mapper {:decode-key-fn    true
-                                                :encode-key-fn    true
-                                                :escape-non-ascii true}))
+(def ^:private json-mapper
+  (json/object-mapper {:decode-key-fn    true
+                       :encode-key-fn    true
+                       :escape-non-ascii true}))
 
 (defn parse
   ([val]

@@ -38,7 +38,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Generate proto files
-        run: lein with-profile uberjar protodeps generate
+        run: lein protodeps generate
 
       - name: Run linters
         run: lein do clean, lint, cljstyle check
@@ -91,7 +91,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Generate proto files
-        run: lein with-profile uberjar protodeps generate
+        run: lein protodeps generate
 
       - name: Unit tests
         env:

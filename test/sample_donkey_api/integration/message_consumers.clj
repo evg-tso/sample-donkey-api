@@ -12,5 +12,6 @@
 
 (defn with-kafka-consumers [test-fn]
   (let [stock-order-consumer (kafka-setup/start-consuming stock-order-channel "stocks_orders")]
+    (async/<!! (async/timeout 2000))
     (test-fn)
     (kafka-setup/stop-consuming! stock-order-consumer)))

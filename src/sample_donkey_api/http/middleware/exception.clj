@@ -9,15 +9,15 @@
              "Please try again in a few minutes.")})
 
 (def exception-middleware
-  (reitit-middleware-exception/create-exception-middleware
-    (merge
-      reitit-middleware-exception/default-handlers
-      {::reitit-middleware-exception/default
-       (fn [ex _]
-         (logger/log ::unhandled-exception :exception ex)
-         generic-error-response)
+  (let [request-coercion-handler (reitit-middleware-exception/create-coercion-handler 400)]
+    (reitit-middleware-exception/create-exception-middleware
+      (merge
+        reitit-middleware-exception/default-handlers
+        {:reitit.ring.middleware.exception/default
+         (fn [ex _]
+           (logger/log ::unhandled-exception :exception ex)
+           generic-error-response)
 
-       ::reitit-middleware-exception/wrap
-       (fn [handler ex {:keys [uri] :as request}]
-         (logger/log ::unhandled-exception :exception ex :uri {:uri uri})
-         (handler ex request))})))
+         :reitit.coercion/request-coercion
+         (fn [ex request]
+           (request-coercion-handler ex request))}))))

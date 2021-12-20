@@ -8,7 +8,6 @@
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
                  [org.clojure/clojure "1.10.3"]
-                 [org.clojure/core.async "1.5.648" :exclusions [org.clojure/tools.reader]]
 
                  ; Async
                  [funcool/promesa "6.0.2"]
@@ -16,9 +15,6 @@
                  ; Validation
                  [metosin/malli "0.7.5"]
                  [commons-validator/commons-validator "1.7"]
-
-                 ; Authorization
-                 [commons-codec/commons-codec "1.15"]
 
                  ; HTTP server
                  [com.appsflyer/donkey "0.5.1" :exclusions [metosin/jsonista]]
@@ -38,10 +34,7 @@
 
                  ; Protobuf
                  [com.google.protobuf/protobuf-java ~proto-version]
-                 [com.appsflyer/pronto "2.0.10" :exclusions [riddley]]
-
-                 ; Other
-                 [danlentz/clj-uuid "0.1.9"]]
+                 [com.appsflyer/pronto "2.0.10" :exclusions [riddley]]]
   :pedantic? :abort
   :main ^:skip-aot sample-donkey-api.core
   :target-path "target/%s"
@@ -59,7 +52,10 @@
 
                                       ; Protobuf
                                       [com.appsflyer/lein-protodeps "1.0.2"]]
-                       :dependencies [[clj-kondo "2021.12.19"]
+                       :dependencies [; Core clojure
+                                      [org.clojure/core.async "1.5.648" :exclusions [org.clojure/tools.reader]]
+
+                                      [clj-kondo "2021.12.19"]
                                       [criterium "0.4.6"]
 
                                       ; Code coverage

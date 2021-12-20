@@ -1,12 +1,10 @@
 {:utils/config                    {}
  :model/create-stock-order        {}
- :service/validation              {:schema #ig/ref :model/create-stock-order}
  :external/server                 {:donkey #ig/ref :http-factory/donkey
                                    :router #ig/ref :external/routes
                                    :config #ig/ref :utils/config}
  :external/routes                 {:controller                #ig/ref :external/controller
                                    :create-stock-order-schema #ig/ref :model/create-stock-order
-                                   :validation-service        #ig/ref :service/validation
                                    :ip-resolver               #ig/ref :repository/ip-resolver}
  :external/controller             {:stock-order-processor #ig/ref :processor/stock-order}
  :internal/server                 {:donkey #ig/ref :http-factory/donkey

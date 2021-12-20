@@ -1,10 +1,10 @@
 (ns sample-donkey-api.integration.containers.kafka-setup
   (:require [com.brunobonacci.mulog :as logger]
             [clj-test-containers.core :as tc]
-            [clj-uuid :as uuid]
             [ketu.async.source :as source])
   (:import (org.testcontainers.containers KafkaContainer)
-           (org.testcontainers.utility DockerImageName)))
+           (org.testcontainers.utility DockerImageName)
+           (java.util UUID)))
 
 (def ^:private kafka-container (atom nil))
 (def ^:private ^:const container-port 9093)
@@ -21,7 +21,7 @@
     (reset! kafka-container container)))
 
 (defn start-consuming [channel topic]
-  (let [consumer-id (str "test-consumer-" (uuid/v4))]
+  (let [consumer-id (str "test-consumer-" (UUID/randomUUID))]
     (source/source
       channel
       {:name            consumer-id
@@ -30,7 +30,7 @@
        :brokers         (get-bootstrap-servers @kafka-container)
        :value-type      :byte-array
        :shape           :value
-       :internal-config {"auto.offset.reset" "earliest"}})))
+       :internal-config {"auto.offset.reset" "latest"}})))
 
 (defn stop-consuming! [consumer]
   (source/stop! consumer))

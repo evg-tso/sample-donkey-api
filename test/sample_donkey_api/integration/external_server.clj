@@ -63,6 +63,6 @@
       (is (= (:status response)
              400))
       (is (= (-> response :body json/parse)
-             {:errors {:body-params {:amount_usd ["missing required key"]
-                                     :direction  ["missing required key"]
-                                     :ip         ["missing required key"]}}})))))
+             {:errors {:amount_usd ["missing required key"]
+                       :direction  ["missing required key"]
+                       :ip         ["missing required key"]}})))))

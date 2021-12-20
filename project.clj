@@ -17,8 +17,8 @@
                  [commons-validator/commons-validator "1.7"]
 
                  ; HTTP server
-                 [com.appsflyer/donkey "0.5.1" :exclusions [metosin/jsonista]]
-                 [metosin/reitit "0.5.15" :exclusions [org.clojure/tools.reader]]
+                 [com.appsflyer/donkey "0.5.1" :exclusions [metosin/jsonista]] ; metosin/jsonista is provided by metosin/reitit
+                 [metosin/reitit "0.5.15"]
                  [ring/ring-core "1.9.4"]
 
                  ; State management
@@ -30,11 +30,11 @@
                  [nonseldiha/slf4j-mulog "0.2.1"]
 
                  ; Kafka messaging
-                 [com.appsflyer/ketu "0.6.0" :exclusions [expound]]
+                 [com.appsflyer/ketu "0.6.0" :exclusions [expound]] ; expound is provided by metosin/reitit
 
                  ; Protobuf
                  [com.google.protobuf/protobuf-java ~proto-version]
-                 [com.appsflyer/pronto "2.0.10" :exclusions [riddley]]]
+                 [com.appsflyer/pronto "2.0.10"]]
   :pedantic? :abort
   :main ^:skip-aot sample-donkey-api.core
   :target-path "target/%s"

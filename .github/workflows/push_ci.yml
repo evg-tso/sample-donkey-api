@@ -38,7 +38,10 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Generate proto files
-        run: lein protodeps generate
+        run: lein with-profile uberjar protodeps generate
+
+      - name: Build uberjar
+        run: lein uberjar
 
       - name: Mega-Linter
         id: ml
@@ -85,7 +88,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Generate proto files
-        run: lein protodeps generate
+        run: lein with-profile uberjar protodeps generate
 
       - name: Unit tests
         env:

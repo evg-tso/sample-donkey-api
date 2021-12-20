@@ -2,13 +2,24 @@
   (:require [sample-donkey-api.application.protocols :as protocols]
             [ketu.clients.producer :as kafka-producer]
             [integrant.core :as ig]
-            [promesa.core :as p]))
+            [promesa.core :as p]
+            [pronto.core :as pronto]))
+
+(defn- create-callback-fn [deferred-promise]
+  (kafka-producer/callback
+    (fn [_ ex]
+      (if (some? ex)
+        (p/reject! deferred-promise ex)
+        (p/resolve! deferred-promise true)))))
 
 (deftype ^:private KafkaProducer [producer bytes->record]
   protocols/IMessagePublisher
-  (publish-stock-order [_ message-bytes]
-    (-> (kafka-producer/send! producer (bytes->record message-bytes))
-        (p/then (constantly true))))
+  (publish-stock-order [_ proto-message]
+    (let [deferred-promise (p/deferred)]
+      (kafka-producer/send! producer
+                            (-> proto-message pronto/proto-map->bytes bytes->record)
+                            (create-callback-fn deferred-promise))
+      deferred-promise))
   (close! [_]
     (kafka-producer/close! producer 5000)))
 

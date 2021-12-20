@@ -1,7 +1,4 @@
-(ns sample-donkey-api.application.model.validation
-  (:import (org.apache.commons.validator.routines InetAddressValidator)))
-
-(def ^:private ^InetAddressValidator inet-address-validator (InetAddressValidator/getInstance))
+(ns sample-donkey-api.application.model.validation)
 
 (defn- only-valid-characters?
   [^String to-check is-valid-fn]
@@ -15,6 +12,3 @@
 
 (defn alphanumeric? [to-check]
   (only-valid-characters? to-check #(Character/isLetterOrDigit ^Character %)))
-
-(defn valid-ip? [^String ip]
-  (.isValid inet-address-validator ip))

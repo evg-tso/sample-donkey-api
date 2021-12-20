@@ -18,11 +18,13 @@
                     :continent-code (:continent_code m)))
 
 (defn request->proto-bytes [req]
-  (pronto/pcond-> (pronto/proto-map proto-defs/proto-mapper
-                                    StocksOuterClass$StockOrder
-                                    :amount-usd (-> req :body-params :amount_usd)
-                                    :stock-id (-> req :path-params :stock-id)
-                                    :direction (-> req :body-params :direction string->direction-keyword))
-                  (some? (-> req :body-params :request_id)) (assoc :request-id (-> req :body-params :request_id))
-                  (some? (-> req :sample/resolved-ip)) (assoc :ip (-> req :sample/resolved-ip map->proto-ip))
-                  true pronto/proto-map->bytes))
+  (let [parameters (:parameters req)
+        body       (:body parameters)
+        path       (:path parameters)]
+    (pronto/pcond-> (pronto/proto-map proto-defs/proto-mapper
+                                      StocksOuterClass$StockOrder
+                                      :amount-usd (.doubleValue ^BigDecimal (:amount_usd body))
+                                      :stock-id (:stock-id path)
+                                      :direction (-> body :direction string->direction-keyword))
+                    (some? (:request_id body)) (assoc :request-id (-> body :request_id str))
+                    (some? (:sample/resolved-ip req)) (assoc :ip (-> req :sample/resolved-ip map->proto-ip)))))

@@ -1,48 +1,67 @@
 (ns sample-donkey-api.application.model.stock-order
   (:require [sample-donkey-api.application.model.validation :as validation]
-            [clj-uuid :as uuid]
-            [integrant.core :as ig]))
+            [integrant.core :as ig]
+            [malli.core :as malli])
+  (:import (java.math BigDecimal)
+           (org.apache.commons.validator.routines InetAddressValidator)))
 
-(def ^:private non-empty-string [:string {:min 1}])
+(def ^:private ^InetAddressValidator inet-address-validator (InetAddressValidator/getInstance))
 
-(def ^:private stock-id [:and
-                         {:description         "This is the stock ID"
-                          :json-schema/example "AAPL"}
-                         non-empty-string
-                         [:fn {:error/message "should be alphanumeric"} validation/alphanumeric?]])
+(def ^:private NonEmptyString [:string {:min 1}])
 
-(def ^:private amount-usd [:and
-                           {:description         "The amount to buy/sell"
-                            :json-schema/example 3.47}
-                           :double
-                           [:not= 0]])
+(def ^:private StockID [:and
+                        {:description         "This is the stock ID"
+                         :json-schema/example "AAPL"}
+                        NonEmptyString
+                        [:fn {:error/message "should be alphanumeric"} validation/alphanumeric?]])
 
-(def ^:private request-id [:and
-                           {:description         "A unique identifier for the request, used for tracked purposes"
-                            :json-schema/example "71dad7da-7926-40d8-9b15-b94a6d46e15a"
-                            :optional            true}
-                           [:string {:min 36 :max 36}]
-                           [:fn {:error/message "should be a valid UUID"} uuid/uuid-string?]])
+(defn- valid-big-decimal? [x]
+  (instance? BigDecimal x))
 
-(def ^:private ip [:and
-                   {:json-schema/example "35.244.183.10"
-                    :description         "The Device’s IP Address"}
-                   [:string {:min 1 :max 46}]
-                   [:fn {:error/message "should be a valid IPv4 or a valid IPv6 address"} validation/valid-ip?]])
+(def ^:private PreciseFloatingNumber
+  (malli/-simple-schema
+    {:type            :preload/big-decimal
+     :pred            valid-big-decimal?
+     :type-properties {:json-schema/type   "number"
+                       :json-schema/format "double"}}))
 
-(def ^:private direction [:and
+(def ^:private AmountUSD [:and
+                          {:description         "The amount to buy/sell"
+                           :json-schema/example 3.47}
+                          PreciseFloatingNumber
+                          [:not= 0]])
+
+(def ^:private RequestID
+  (malli/schema
+    [:uuid
+     {:description "A unique identifier for the request, used for tracked purposes"
+      :optional    true}]))
+
+(defn- valid-ip? [^String ip]
+  (and (string? ip)
+       (.isValid inet-address-validator ip)))
+
+(def ^:private IP
+  (malli/-simple-schema
+    {:type            :sample/ip
+     :pred            valid-ip?
+     :type-properties {:error/message       "should be a valid IPv4 or a valid IPv6 address"
+                       :json-schema/example "35.244.183.10"
+                       :description         "The device IP Address"}}))
+
+(def ^:private Direction [:enum
                           {:json-schema/example "buy"
                            :json-schema/type    "string"
                            :description         "The direction of the operation, buy or sell"}
-                          [:enum "buy" "sell"]])
+                          "buy" "sell"])
 
-(def path [:map [:stock-id stock-id]])
+(def path [:map [:stock-id StockID]])
 
 (def body [:map
-           [:amount_usd amount-usd]
-           [:request_id {:optional true} request-id]
-           [:ip ip]
-           [:direction direction]])
+           [:amount_usd AmountUSD]
+           [:request_id {:optional true} RequestID]
+           [:ip IP]
+           [:direction Direction]])
 
 (def request [:map
               [:path-params path]

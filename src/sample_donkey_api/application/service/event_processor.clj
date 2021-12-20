@@ -25,8 +25,8 @@
   [mapper-fn message-producer]
   (let [mapper-fn (decorate-with-try mapper-fn)]
     (fn [req]
-      (if-let [proto-bytes (mapper-fn req)]
-        (-> (protocols/publish-stock-order message-producer proto-bytes)
+      (if-let [proto-map (mapper-fn req)]
+        (-> (protocols/publish-stock-order message-producer proto-map)
             (p/then (constantly SUCCESS-RESULT))
             (p/catch (constantly ERROR-RESULT)))
         (p/resolved ERROR-RESULT)))))

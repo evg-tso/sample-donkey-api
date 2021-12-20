@@ -1,13 +1,14 @@
 (ns sample-donkey-api.integration.internal-server
-  (:require [clojure.test :refer [deftest testing is use-fixtures]]
-            [sample-donkey-api.integration.http-factory-setup :as http-factory-setup]
-            [com.appsflyer.donkey.request :as donkey-request]
-            [com.appsflyer.donkey.result :as donkey-result]
-            [sample-donkey-api.assembly :as assembly]
-            [com.appsflyer.donkey.client :as donkey-client]
-            [sample-donkey-api.integration.containers.all-test-containers :as all-test-containers]
-            [com.brunobonacci.mulog :as logger]
-            [sample-donkey-api.integration.logs-setup :as logs-setup]))
+  (:require
+    [clojure.test :refer [deftest testing is use-fixtures]]
+    [com.appsflyer.donkey.client :as donkey-client]
+    [com.appsflyer.donkey.request :as donkey-request]
+    [com.appsflyer.donkey.result :as donkey-result]
+    [com.brunobonacci.mulog :as logger]
+    [sample-donkey-api.assembly :as assembly]
+    [sample-donkey-api.integration.containers.all-test-containers :as all-test-containers]
+    [sample-donkey-api.integration.http-factory-setup :as http-factory-setup]
+    [sample-donkey-api.integration.logs-setup :as logs-setup]))
 
 (defn- with-internal-server [test-fn]
   (let [system-map (assembly/start-application)]

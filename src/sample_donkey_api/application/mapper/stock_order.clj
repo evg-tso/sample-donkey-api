@@ -1,7 +1,11 @@
 (ns sample-donkey-api.application.mapper.stock-order
-  (:require [pronto.core :as pronto]
-            [sample-donkey-api.application.mapper.proto-definitions :as proto-defs])
-  (:import (stocks StocksOuterClass$StockOrder StocksOuterClass$IP)))
+  (:require
+    [pronto.core :as pronto]
+    [sample-donkey-api.application.mapper.proto-definitions :as proto-defs])
+  (:import
+    (stocks
+      StocksOuterClass$IP
+      StocksOuterClass$StockOrder)))
 
 (defn- string->direction-keyword [s]
   (condp = s

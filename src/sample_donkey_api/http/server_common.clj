@@ -1,7 +1,8 @@
 (ns sample-donkey-api.http.server-common
-  (:require [com.appsflyer.donkey.server :as donkey-server]
-            [com.appsflyer.donkey.core :as donkey]
-            [com.brunobonacci.mulog :as logger]))
+  (:require
+    [com.appsflyer.donkey.core :as donkey]
+    [com.appsflyer.donkey.server :as donkey-server]
+    [com.brunobonacci.mulog :as logger]))
 
 (defn create-server [donkey server-config]
   (let [server (donkey/create-server donkey server-config)]

@@ -1,7 +1,10 @@
 (ns sample-donkey-api.integration.http-factory-setup
-  (:require [com.appsflyer.donkey.client :as donkey-client]
-            [com.appsflyer.donkey.core :as donkey-core])
-  (:import (com.appsflyer.donkey.client DonkeyClient)))
+  (:require
+    [com.appsflyer.donkey.client :as donkey-client]
+    [com.appsflyer.donkey.core :as donkey-core])
+  (:import
+    (com.appsflyer.donkey.client
+      DonkeyClient)))
 
 (def donkey-client (atom nil))
 

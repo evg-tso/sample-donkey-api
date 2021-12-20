@@ -1,17 +1,18 @@
 (ns sample-donkey-api.integration.external-server
-  (:require [clojure.test :refer [deftest testing is use-fixtures]]
-            [sample-donkey-api.assembly :as assembly]
-            [sample-donkey-api.integration.http-factory-setup :as http-factory-setup]
-            [com.appsflyer.donkey.client :as donkey-client]
-            [com.appsflyer.donkey.request :as donkey-request]
-            [com.appsflyer.donkey.result :as donkey-result]
-            [sample-donkey-api.integration.order-stock-messages :as order-stock-messages]
-            [com.brunobonacci.mulog :as logger]
-            [sample-donkey-api.integration.message-consumers :as message-consumers]
-            [sample-donkey-api.utils.json :as json]
-            [sample-donkey-api.integration.containers.all-test-containers :as all-test-containers]
-            [clojure.core.async :as async]
-            [sample-donkey-api.integration.logs-setup :as logs-setup]))
+  (:require
+    [clojure.core.async :as async]
+    [clojure.test :refer [deftest testing is use-fixtures]]
+    [com.appsflyer.donkey.client :as donkey-client]
+    [com.appsflyer.donkey.request :as donkey-request]
+    [com.appsflyer.donkey.result :as donkey-result]
+    [com.brunobonacci.mulog :as logger]
+    [sample-donkey-api.assembly :as assembly]
+    [sample-donkey-api.integration.containers.all-test-containers :as all-test-containers]
+    [sample-donkey-api.integration.http-factory-setup :as http-factory-setup]
+    [sample-donkey-api.integration.logs-setup :as logs-setup]
+    [sample-donkey-api.integration.message-consumers :as message-consumers]
+    [sample-donkey-api.integration.order-stock-messages :as order-stock-messages]
+    [sample-donkey-api.utils.json :as json]))
 
 (defn- with-external-server [test-fn]
   (let [system-map (assembly/start-application)]

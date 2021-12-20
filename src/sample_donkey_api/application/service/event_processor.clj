@@ -1,9 +1,10 @@
 (ns sample-donkey-api.application.service.event-processor
-  (:require [integrant.core :as ig]
-            [com.brunobonacci.mulog :as logger]
-            [sample-donkey-api.application.mapper.stock-order :as stock-order-mapper]
-            [sample-donkey-api.application.protocols :as protocols]
-            [promesa.core :as p]))
+  (:require
+    [com.brunobonacci.mulog :as logger]
+    [integrant.core :as ig]
+    [promesa.core :as p]
+    [sample-donkey-api.application.mapper.stock-order :as stock-order-mapper]
+    [sample-donkey-api.application.protocols :as protocols]))
 
 (def ^:private ^:const SUCCESS-RESULT {:result :success})
 (def ^:private ^:const ERROR-RESULT {:result :failure})

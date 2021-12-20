@@ -1,9 +1,13 @@
 (ns sample-donkey-api.application.model.stock-order
-  (:require [sample-donkey-api.application.model.validation :as validation]
-            [integrant.core :as ig]
-            [malli.core :as malli])
-  (:import (java.math BigDecimal)
-           (org.apache.commons.validator.routines InetAddressValidator)))
+  (:require
+    [integrant.core :as ig]
+    [malli.core :as malli]
+    [sample-donkey-api.application.model.validation :as validation])
+  (:import
+    (java.math
+      BigDecimal)
+    (org.apache.commons.validator.routines
+      InetAddressValidator)))
 
 (def ^:private ^InetAddressValidator inet-address-validator (InetAddressValidator/getInstance))
 

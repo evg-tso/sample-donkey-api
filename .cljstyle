@@ -16,4 +16,4 @@
          :vars        {:enabled? true}
          :functions   {:enabled? false}
          :types       {:enabled? false}
-         :namespaces  {:enabled? false}}}
+         :namespaces  {:enabled? true}}}

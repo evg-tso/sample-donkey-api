@@ -1,6 +1,7 @@
 (ns sample-donkey-api.integration.containers.all-test-containers
-  (:require [clj-test-containers.core :as tc]
-            [sample-donkey-api.integration.containers.kafka-setup :as kafka-setup]))
+  (:require
+    [clj-test-containers.core :as tc]
+    [sample-donkey-api.integration.containers.kafka-setup :as kafka-setup]))
 
 (defn- stop-containers! [containers]
   (run! tc/stop! containers))

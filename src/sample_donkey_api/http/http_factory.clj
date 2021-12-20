@@ -1,6 +1,7 @@
 (ns sample-donkey-api.http.http-factory
-  (:require [integrant.core :as ig]
-            [com.appsflyer.donkey.core :as donkey-core]))
+  (:require
+    [com.appsflyer.donkey.core :as donkey-core]
+    [integrant.core :as ig]))
 
 (defn- start-donkey-factory []
   (donkey-core/create-donkey))

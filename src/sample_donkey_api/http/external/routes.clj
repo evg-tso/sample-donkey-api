@@ -1,17 +1,18 @@
 (ns sample-donkey-api.http.external.routes
-  (:require [integrant.core :as ig]
-            [reitit.ring :as reitit-ring]
-            [ring.util.response :as response]
-            [reitit.swagger :as reitit-swagger]
-            [reitit.swagger-ui :as reitit-swagger-ui]
-            [malli.util :as malli-util]
-            [reitit.ring.middleware.muuntaja :as reitit-middleware-muuntaja]
-            [sample-donkey-api.http.middleware.exception :as exception-middleware]
-            [sample-donkey-api.http.middleware.ip-resolver :as ip-resolver-middleware]
-            [muuntaja.core :as muuntaja]
-            [sample-donkey-api.http.protocols :as protocols]
-            [reitit.coercion.malli :as reitit-coercion-malli]
-            [reitit.ring.coercion :as reitit-ring-coercion]))
+  (:require
+    [integrant.core :as ig]
+    [malli.util :as malli-util]
+    [muuntaja.core :as muuntaja]
+    [reitit.coercion.malli :as reitit-coercion-malli]
+    [reitit.ring :as reitit-ring]
+    [reitit.ring.coercion :as reitit-ring-coercion]
+    [reitit.ring.middleware.muuntaja :as reitit-middleware-muuntaja]
+    [reitit.swagger :as reitit-swagger]
+    [reitit.swagger-ui :as reitit-swagger-ui]
+    [ring.util.response :as response]
+    [sample-donkey-api.http.middleware.exception :as exception-middleware]
+    [sample-donkey-api.http.middleware.ip-resolver :as ip-resolver-middleware]
+    [sample-donkey-api.http.protocols :as protocols]))
 
 (defn- get-routes
   [{:keys [controller create-stock-order-schema ip-resolver]}]

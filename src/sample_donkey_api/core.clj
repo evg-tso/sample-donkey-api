@@ -1,8 +1,9 @@
 (ns sample-donkey-api.core
   (:gen-class)
-  (:require [com.brunobonacci.mulog :as logger]
-            [sample-donkey-api.assembly :as assembly]
-            [org.slf4j.impl.mulog]))
+  (:require
+    [com.brunobonacci.mulog :as logger]
+    [org.slf4j.impl.mulog]
+    [sample-donkey-api.assembly :as assembly]))
 
 (defn- shutdown-hook [shutdown-system-fn]
   (fn []

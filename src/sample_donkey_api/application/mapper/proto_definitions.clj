@@ -1,7 +1,11 @@
 (ns sample-donkey-api.application.mapper.proto-definitions
-  (:require [pronto.core :as pronto]
-            [pronto.utils :as pronto-utils])
-  (:import (stocks StocksOuterClass$StockOrder StocksOuterClass$IP)))
+  (:require
+    [pronto.core :as pronto]
+    [pronto.utils :as pronto-utils])
+  (:import
+    (stocks
+      StocksOuterClass$IP
+      StocksOuterClass$StockOrder)))
 
 (pronto/defmapper proto-mapper
                   [StocksOuterClass$StockOrder

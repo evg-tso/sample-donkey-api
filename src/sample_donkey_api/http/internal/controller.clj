@@ -1,6 +1,7 @@
 (ns sample-donkey-api.http.internal.controller
-  (:require [sample-donkey-api.http.protocols :as protocols]
-            [integrant.core :as ig]))
+  (:require
+    [integrant.core :as ig]
+    [sample-donkey-api.http.protocols :as protocols]))
 
 (def ^:private ^:const ok-response {:status 200})
 

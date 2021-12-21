@@ -1,7 +1,8 @@
 (ns sample-donkey-api.http.middleware.ip-resolver
-  (:require [sample-donkey-api.application.protocols :as protocols]
-            [promesa.core :as p]
-            [com.brunobonacci.mulog :as logger]))
+  (:require
+    [com.brunobonacci.mulog :as logger]
+    [promesa.core :as p]
+    [sample-donkey-api.application.protocols :as protocols]))
 
 (defn create-ip-resolver-middleware [ip-resolver]
   (fn [handler]

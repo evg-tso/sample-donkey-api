@@ -1,0 +1,19 @@
+{:files {:ignore #{"target"}}
+ :rules {:blank-lines {:enabled?          true
+                       :trim-consecutive? true
+                       :max-consecutive   1
+                       :insert-padding?   true
+                       :padding-lines     1}
+         :eof-newline {:enabled? true}
+         :indentation {:enabled? false}
+         :comments    {:enabled?       true
+                       :inline-prefix  " "
+                       :leading-prefix " "}
+         :whitespace  {:enabled?            true
+                       :remove-surrounding? true
+                       :remove-trailing?    true
+                       :insert-missing      true}
+         :vars        {:enabled? true}
+         :functions   {:enabled? false}
+         :types       {:enabled? false}
+         :namespaces  {:enabled? true}}}

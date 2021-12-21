@@ -1,7 +1,8 @@
 (ns sample-donkey-api.http.external.controller
-  (:require [sample-donkey-api.http.protocols :as protocols]
-            [integrant.core :as ig]
-            [promesa.core :as p]))
+  (:require
+    [integrant.core :as ig]
+    [promesa.core :as p]
+    [sample-donkey-api.http.protocols :as protocols]))
 
 (def ^:private ^:const accepted-response {:status 202})
 (def ^:private ^:const internal-error-response {:status 500})

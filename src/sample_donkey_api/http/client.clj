@@ -1,8 +1,11 @@
 (ns sample-donkey-api.http.client
-  (:require [integrant.core :as ig]
-            [com.appsflyer.donkey.client :as donkey-client]
-            [com.appsflyer.donkey.core :as donkey-core])
-  (:import (com.appsflyer.donkey.client DonkeyClient)))
+  (:require
+    [com.appsflyer.donkey.client :as donkey-client]
+    [com.appsflyer.donkey.core :as donkey-core]
+    [integrant.core :as ig])
+  (:import
+    (com.appsflyer.donkey.client
+      DonkeyClient)))
 
 (defn- create-donkey-client ^DonkeyClient [donkey]
   (donkey-core/create-client

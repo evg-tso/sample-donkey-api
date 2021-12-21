@@ -1,12 +1,13 @@
 (ns sample-donkey-api.http.internal.routes
-  (:require [reitit.ring :as reitit-ring]
-            [reitit.ring.middleware.muuntaja :as reitit-middleware-muuntaja]
-            [muuntaja.core :as muuntaja]
-            [sample-donkey-api.http.middleware.exception :as exception-middleware]
-            [integrant.core :as ig]
-            [sample-donkey-api.http.protocols :as protocols]
-            [com.appsflyer.donkey.middleware.params :as donkey-params]
-            [ring.util.response :as response]))
+  (:require
+    [com.appsflyer.donkey.middleware.params :as donkey-params]
+    [integrant.core :as ig]
+    [muuntaja.core :as muuntaja]
+    [reitit.ring :as reitit-ring]
+    [reitit.ring.middleware.muuntaja :as reitit-middleware-muuntaja]
+    [ring.util.response :as response]
+    [sample-donkey-api.http.middleware.exception :as exception-middleware]
+    [sample-donkey-api.http.protocols :as protocols]))
 
 (defn- get-routes
   [controller]

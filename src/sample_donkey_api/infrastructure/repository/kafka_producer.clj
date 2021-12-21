@@ -1,9 +1,10 @@
 (ns sample-donkey-api.infrastructure.repository.kafka-producer
-  (:require [sample-donkey-api.application.protocols :as protocols]
-            [ketu.clients.producer :as kafka-producer]
-            [integrant.core :as ig]
-            [promesa.core :as p]
-            [pronto.core :as pronto]))
+  (:require
+    [integrant.core :as ig]
+    [ketu.clients.producer :as kafka-producer]
+    [promesa.core :as p]
+    [pronto.core :as pronto]
+    [sample-donkey-api.application.protocols :as protocols]))
 
 (defn- create-callback-fn [deferred-promise]
   (kafka-producer/callback

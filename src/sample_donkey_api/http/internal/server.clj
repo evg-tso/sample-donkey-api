@@ -1,8 +1,9 @@
 (ns sample-donkey-api.http.internal.server
-  (:require [sample-donkey-api.http.server-common :as server-common]
-            [integrant.core :as ig]
-            [com.appsflyer.donkey.server :as donkey-server]
-            [com.brunobonacci.mulog :as logger]))
+  (:require
+    [com.appsflyer.donkey.server :as donkey-server]
+    [com.brunobonacci.mulog :as logger]
+    [integrant.core :as ig]
+    [sample-donkey-api.http.server-common :as server-common]))
 
 (defn- start-server [donkey router port]
   (let [server-config {:port                 port

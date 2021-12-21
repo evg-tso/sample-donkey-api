@@ -1,12 +1,13 @@
 (ns sample-donkey-api.infrastructure.repository.ip-resolver
-  (:require [sample-donkey-api.application.protocols :as protocols]
-            [com.appsflyer.donkey.client :as donkey-client]
-            [com.appsflyer.donkey.request :as donkey-request]
-            [com.appsflyer.donkey.result :as donkey-result]
-            [com.brunobonacci.mulog :as logger]
-            [sample-donkey-api.utils.json :as json]
-            [integrant.core :as ig]
-            [promesa.core :as p]))
+  (:require
+    [com.appsflyer.donkey.client :as donkey-client]
+    [com.appsflyer.donkey.request :as donkey-request]
+    [com.appsflyer.donkey.result :as donkey-result]
+    [com.brunobonacci.mulog :as logger]
+    [integrant.core :as ig]
+    [promesa.core :as p]
+    [sample-donkey-api.application.protocols :as protocols]
+    [sample-donkey-api.utils.json :as json]))
 
 (defn- resolve-ip-by-http [ip http-client access-key url-template]
   (let [future-promise (p/deferred)

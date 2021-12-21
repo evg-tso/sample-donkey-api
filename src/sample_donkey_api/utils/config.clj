@@ -1,8 +1,9 @@
 (ns sample-donkey-api.utils.config
-  (:require [integrant.core :as ig]
-            [com.walmartlabs.dyn-edn :as dyn-edn]
-            [clojure.java.io :as io]
-            [clojure.edn :as edn]))
+  (:require
+    [clojure.edn :as edn]
+    [clojure.java.io :as io]
+    [com.walmartlabs.dyn-edn :as dyn-edn]
+    [integrant.core :as ig]))
 
 (defmethod ig/init-key :utils/config [_ _]
   (->> "config.edn"

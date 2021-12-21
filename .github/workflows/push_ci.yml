@@ -5,14 +5,6 @@ on:
     branches: [master]
 
 jobs:
-  cancel_duplicates:
-    name: Cancel duplicate jobs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: fkirc/skip-duplicate-actions@master
-        with:
-          github_token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
-
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -38,7 +30,10 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Generate proto files
-        run: lein with-profile uberjar protodeps generate
+        run: lein protodeps generate
+
+      - name: Run linters
+        run: lein lint
 
       - name: Build uberjar
         run: lein uberjar
@@ -54,6 +49,7 @@ jobs:
           DISABLE: MARKDOWN,SPELL
           JAVA_CHECKSTYLE_FILTER_REGEX_EXCLUDE: generated
           CLOJURE_CLJ_KONDO_FILTER_REGEX_INCLUDE: (src|lib)
+          COPYPASTE_JSCPD_DISABLE_ERRORS_IF_LESS_THAN: 2
 
       # Upload Mega-Linter artifacts
       - name: Archive production artifacts
@@ -88,7 +84,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Generate proto files
-        run: lein with-profile uberjar protodeps generate
+        run: lein protodeps generate
 
       - name: Unit tests
         env:

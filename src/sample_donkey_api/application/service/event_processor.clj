@@ -1,13 +1,13 @@
 (ns sample-donkey-api.application.service.event-processor
-  (:require [integrant.core :as ig]
-            [com.brunobonacci.mulog :as logger]
-            [sample-donkey-api.application.mapper.stock-order :as stock-order-mapper]
-            [sample-donkey-api.application.protocols :as protocols]
-            [promesa.core :as p]))
+  (:require
+    [com.brunobonacci.mulog :as logger]
+    [integrant.core :as ig]
+    [promesa.core :as p]
+    [sample-donkey-api.application.mapper.stock-order :as stock-order-mapper]
+    [sample-donkey-api.application.protocols :as protocols]))
 
 (def ^:private ^:const SUCCESS-RESULT {:result :success})
-(def ^:private ^:const ERROR-RESULT {:result :failure
-                                     :reason :error})
+(def ^:private ^:const ERROR-RESULT {:result :failure})
 
 (defn- decorate-with-try [mapper-fn]
   (fn [req]
@@ -21,7 +21,7 @@
   "Returns a pure function of type 'req -> result' that maps the request to proto bytes
    and publishes the proto bytes to the supplied message-producer.
    The result will be a future of {:result :success} map for successes
-   or for failures a future of {:result :failure :reason :error}"
+   or for failures a future of {:result :failure}"
   [mapper-fn message-producer]
   (let [mapper-fn (decorate-with-try mapper-fn)]
     (fn [req]

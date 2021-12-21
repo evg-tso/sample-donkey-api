@@ -1,6 +1,7 @@
 (ns sample-donkey-api.http.middleware.exception
-  (:require [reitit.ring.middleware.exception :as reitit-middleware-exception]
-            [com.brunobonacci.mulog :as logger]))
+  (:require
+    [com.brunobonacci.mulog :as logger]
+    [reitit.ring.middleware.exception :as reitit-middleware-exception]))
 
 (def ^:private ^:const generic-error-response
   {:status 500

@@ -1,5 +1,6 @@
 (ns sample-donkey-api.integration.order-stock-messages
-  (:require [sample-donkey-api.utils.json :as json]))
+  (:require
+    [sample-donkey-api.utils.json :as json]))
 
 (def ^:private stock-id "AAPL")
 (def url (str "http://localhost:8080/api/v1.0/stocks/order/" stock-id))

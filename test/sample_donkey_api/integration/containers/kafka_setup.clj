@@ -1,10 +1,15 @@
 (ns sample-donkey-api.integration.containers.kafka-setup
-  (:require [com.brunobonacci.mulog :as logger]
-            [clj-test-containers.core :as tc]
-            [ketu.async.source :as source])
-  (:import (org.testcontainers.containers KafkaContainer)
-           (org.testcontainers.utility DockerImageName)
-           (java.util UUID)))
+  (:require
+    [clj-test-containers.core :as tc]
+    [com.brunobonacci.mulog :as logger]
+    [ketu.async.source :as source])
+  (:import
+    (java.util
+      UUID)
+    (org.testcontainers.containers
+      KafkaContainer)
+    (org.testcontainers.utility
+      DockerImageName)))
 
 (def ^:private kafka-container (atom nil))
 (def ^:private ^:const container-port 9093)

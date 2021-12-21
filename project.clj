@@ -55,7 +55,10 @@
                        :dependencies [; Core clojure
                                       [org.clojure/core.async "1.5.648" :exclusions [org.clojure/tools.reader]]
 
+                                      ; Linters
+                                      [mvxcvi/cljstyle "0.15.0"]
                                       [clj-kondo "2021.12.19"]
+
                                       [criterium "0.4.6"]
 
                                       ; Code coverage
@@ -68,4 +71,4 @@
                                       :capture-output? false
                                       :report          eftest.report.junit/report
                                       :report-to-file  "target/junit.xml"}
-                       :aliases      {"lint" ["run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel"]}}})
+                       :aliases      {"lint" ["do" "run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel" "," "run" "-m" "cljstyle.main" "check"]}}})

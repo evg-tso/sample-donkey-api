@@ -7,7 +7,7 @@
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
-                 [org.clojure/clojure "1.10.3"]
+                 [org.clojure/clojure "1.10.3" :exclusions [org.clojure/spec.alpha]] ; org.clojure/spec.alpha is provided by com.appsflyer/donkey
 
                  ; Async
                  [funcool/promesa "6.0.2"]
@@ -18,7 +18,7 @@
 
                  ; HTTP server
                  [com.appsflyer/donkey "0.5.2" :exclusions [metosin/jsonista]] ; metosin/jsonista is provided by metosin/reitit
-                 [metosin/reitit "0.5.15"]
+                 [metosin/reitit "0.5.15" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
                  [ring/ring-core "1.9.4"]
 
                  ; State management
@@ -57,7 +57,7 @@
 
                                       ; Linters
                                       [mvxcvi/cljstyle "0.15.0"]
-                                      [clj-kondo "2021.12.19"]
+                                      [clj-kondo "2021.12.19" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
 
                                       [criterium "0.4.6"]
 

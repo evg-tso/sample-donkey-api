@@ -17,7 +17,7 @@
                  [commons-validator/commons-validator "1.7"]
 
                  ; HTTP server
-                 [com.appsflyer/donkey "0.5.1" :exclusions [metosin/jsonista]] ; metosin/jsonista is provided by metosin/reitit
+                 [com.appsflyer/donkey "0.5.2" :exclusions [metosin/jsonista]] ; metosin/jsonista is provided by metosin/reitit
                  [metosin/reitit "0.5.15"]
                  [ring/ring-core "1.9.4"]
 

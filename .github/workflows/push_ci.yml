@@ -22,7 +22,7 @@ jobs:
           java-version: 17
 
       - name: Restore local Maven repository from cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles( 'project.clj' ) }}
@@ -76,7 +76,7 @@ jobs:
           java-version: 17
 
       - name: Restore local Maven repository from cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles( 'project.clj' ) }}

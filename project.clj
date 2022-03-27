@@ -65,7 +65,7 @@
                                       [cloverage "1.2.3" :exclusions [org.clojure/tools.reader]]
 
                                       ; test containers
-                                      [clj-test-containers "0.5.0" :exclusions [org.testcontainers/testcontainers]]
+                                      [clj-test-containers "0.6.0" :exclusions [org.testcontainers/testcontainers]]
                                       [org.testcontainers/kafka "1.16.3" :exclusions [org.slf4j/slf4j-api]]]
                        :eftest       {:multithread?    false
                                       :capture-output? false

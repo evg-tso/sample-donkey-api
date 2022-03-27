@@ -4,8 +4,6 @@
     [com.brunobonacci.mulog :as logger]
     [ketu.async.source :as source])
   (:import
-    (java.util
-      UUID)
     (org.testcontainers.containers
       KafkaContainer)
     (org.testcontainers.utility
@@ -26,7 +24,7 @@
     (reset! kafka-container container)))
 
 (defn start-consuming [channel topic]
-  (let [consumer-id (str "test-consumer-" (UUID/randomUUID))]
+  (let [consumer-id (str "test-consumer-" (random-uuid))]
     (source/source
       channel
       {:name            consumer-id

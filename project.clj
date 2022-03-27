@@ -48,7 +48,7 @@
   :profiles {:uberjar {:aot      :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
              :dev     {:plugins      [[lein-eftest "0.5.9"]
-                                      [lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]
+                                      [lein-cloverage "1.2.3" :exclusions [org.clojure/clojure]]
 
                                       ; Protobuf
                                       [com.appsflyer/lein-protodeps "1.0.3"]]

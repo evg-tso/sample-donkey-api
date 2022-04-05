@@ -1,4 +1,4 @@
-(def proto-version "3.19.4")
+(def proto-version "3.20.0")
 
 (defproject sample-donkey-api "0.1.0-SNAPSHOT"
   :description "A sample Clojure http server"

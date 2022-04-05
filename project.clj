@@ -7,7 +7,7 @@
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
-                 [org.clojure/clojure "1.11.0" :exclusions [org.clojure/spec.alpha]] ; org.clojure/spec.alpha is provided by com.appsflyer/donkey
+                 [org.clojure/clojure "1.11.1" :exclusions [org.clojure/spec.alpha]] ; org.clojure/spec.alpha is provided by com.appsflyer/donkey
 
                  ; Async
                  [funcool/promesa "8.0.450"]

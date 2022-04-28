@@ -1,4 +1,5 @@
 {
   "extends": ["config:base"],
-  "addLabels": ["renovate", "dependency"]
+  "addLabels": ["renovate", "dependency"],
+  "automerge": true
 }

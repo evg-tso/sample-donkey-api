@@ -66,7 +66,7 @@
 
                                       ; test containers
                                       [clj-test-containers "0.7.0" :exclusions [org.testcontainers/testcontainers]]
-                                      [org.testcontainers/kafka "1.17.1" :exclusions [org.slf4j/slf4j-api]]]
+                                      [org.testcontainers/kafka "1.17.2" :exclusions [org.slf4j/slf4j-api]]]
                        :eftest       {:multithread?    false
                                       :capture-output? false
                                       :report          eftest.report.junit/report

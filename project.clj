@@ -62,7 +62,7 @@
                                       [criterium "0.4.6"]
 
                                       ; Code coverage
-                                      [cloverage "1.2.3" :exclusions [org.clojure/tools.reader]]
+                                      [cloverage "1.2.4" :exclusions [org.clojure/tools.reader]]
 
                                       ; test containers
                                       [clj-test-containers "0.7.0" :exclusions [org.testcontainers/testcontainers]]

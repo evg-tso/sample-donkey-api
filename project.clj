@@ -26,7 +26,7 @@
                  [com.walmartlabs/dyn-edn "0.2.0"]
 
                  ; Logging
-                 [com.brunobonacci/mulog "0.8.2"]
+                 [com.brunobonacci/mulog "0.9.0"]
                  [nonseldiha/slf4j-mulog "0.2.1"]
 
                  ; Kafka messaging

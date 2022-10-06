@@ -10,7 +10,7 @@
                  [org.clojure/clojure "1.11.1" :exclusions [org.clojure/spec.alpha]] ; org.clojure/spec.alpha is provided by com.appsflyer/donkey
 
                  ; Async
-                 [funcool/promesa "9.0.462"]
+                 [funcool/promesa "9.0.470"]
 
                  ; Validation
                  [metosin/malli "0.8.9"]

@@ -13,7 +13,7 @@
                  [funcool/promesa "9.0.477"]
 
                  ; Validation
-                 [metosin/malli "0.9.0"]
+                 [metosin/malli "0.9.1"]
                  [commons-validator/commons-validator "1.7"]
 
                  ; HTTP server

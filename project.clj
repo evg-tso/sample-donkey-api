@@ -53,7 +53,7 @@
                                       ; Protobuf
                                       [com.appsflyer/lein-protodeps "1.0.4"]]
                        :dependencies [; Core clojure
-                                      [org.clojure/core.async "1.5.648" :exclusions [org.clojure/tools.reader]]
+                                      [org.clojure/core.async "1.6.673" :exclusions [org.clojure/tools.reader]]
 
                                       ; Linters
                                       [mvxcvi/cljstyle "0.15.0"]

@@ -51,7 +51,7 @@
                                       [lein-cloverage "1.2.4" :exclusions [org.clojure/clojure]]
 
                                       ; Protobuf
-                                      [com.appsflyer/lein-protodeps "1.0.4"]]
+                                      [com.appsflyer/lein-protodeps "1.0.5"]]
                        :dependencies [; Core clojure
                                       [org.clojure/core.async "1.6.673" :exclusions [org.clojure/tools.reader]]
 

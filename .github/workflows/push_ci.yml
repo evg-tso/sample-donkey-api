@@ -40,7 +40,7 @@ jobs:
 
       - name: Mega-Linter
         id: ml
-        uses: nvuillam/mega-linter/flavors/java@v6.15.0
+        uses: nvuillam/mega-linter/flavors/java@v6.16.0
         env:
           # All available variables are described in documentation
           # https://nvuillam.github.io/mega-linter/configuration/

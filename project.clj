@@ -34,7 +34,7 @@
 
                  ; Protobuf
                  [com.google.protobuf/protobuf-java ~proto-version]
-                 [com.appsflyer/pronto "2.1.0"]]
+                 [com.appsflyer/pronto "2.1.1"]]
   :pedantic? :abort
   :main ^:skip-aot sample-donkey-api.core
   :target-path "target/%s"

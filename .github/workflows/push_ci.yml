@@ -100,7 +100,7 @@ jobs:
           files: "target/coverage/junit.xml"
 
       - name: Coveralls
-        uses: coverallsapp/github-action@v1.2.2
+        uses: coverallsapp/github-action@v1.2.3
         with:
           path-to-lcov: "target/coverage/lcov.info"
           github-token: ${{ secrets.GITHUB_TOKEN }}

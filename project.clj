@@ -57,7 +57,7 @@
 
                                       ; Linters
                                       [mvxcvi/cljstyle "0.15.0"]
-                                      [clj-kondo "2023.01.16" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
+                                      [clj-kondo "2023.02.17" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
 
                                       [criterium "0.4.6"]
 

@@ -19,7 +19,7 @@
                  ; HTTP server
                  [com.appsflyer/donkey "0.5.2" :exclusions [metosin/jsonista]] ; metosin/jsonista is provided by metosin/reitit
                  [metosin/reitit "0.6.0" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
-                 [ring/ring-core "1.9.6"]
+                 [ring/ring-core "1.10.0"]
 
                  ; State management
                  [integrant "0.8.0"]

@@ -30,7 +30,7 @@
                  [nonseldiha/slf4j-mulog "0.2.1"]
 
                  ; Kafka messaging
-                 [com.appsflyer/ketu "0.6.0" :exclusions [expound]] ; expound is provided by metosin/reitit
+                 [com.appsflyer/ketu "1.0.0" :exclusions [expound]] ; expound is provided by metosin/reitit
 
                  ; Protobuf
                  [com.google.protobuf/protobuf-java ~proto-version]

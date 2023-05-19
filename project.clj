@@ -28,7 +28,7 @@
 
                  ; Logging
                  [com.brunobonacci/mulog "0.9.0"]
-                 [nonseldiha/slf4j-mulog "0.2.1" :exclusions [org.slf4j/slf4j-api]]
+                 [nonseldiha/slf4j-mulog "0.2.1"]
 
                  ; Kafka messaging
                  [com.appsflyer/ketu "1.0.0" :exclusions [expound ; provided by metosin/reitit

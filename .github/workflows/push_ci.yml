@@ -13,7 +13,7 @@ jobs:
       - name: Run clj-kondo
         run: >-
           docker run
-          --volume $PWD:/work
+          --volume "$PWD:/work"
           --rm
           cljkondo/clj-kondo:2023.05.18-alpine
           clj-kondo
@@ -32,7 +32,7 @@ jobs:
       - name: Check with cljstyle
         run: >-
           docker run
-          --volume $PWD:/work
+          --volume "$PWD:/work"
           --rm
           abogoyavlensky/cljstyle:0.15.0
           cljstyle check --report /work

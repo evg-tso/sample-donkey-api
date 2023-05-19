@@ -13,7 +13,7 @@
                  [funcool/promesa "10.0.594"]
 
                  ; Validation
-                 [metosin/malli "0.11.0" :exclusions [org.clojure/tools.reader]] ; provided by com.appsflyer/ketu
+                 [metosin/malli "0.11.0"] ; provided by com.appsflyer/ketu
                  [commons-validator/commons-validator "1.7"]
 
                  ; HTTP server
@@ -32,6 +32,7 @@
 
                  ; Kafka messaging
                  [com.appsflyer/ketu "1.0.0" :exclusions [expound ; provided by metosin/reitit
+                                                          org.clojure/tools.reader ; provided by metosin/malli
                                                           org.slf4j/slf4j-api]] ; provided by nonseldiha/slf4j-mulog
 
                  ; Protobuf

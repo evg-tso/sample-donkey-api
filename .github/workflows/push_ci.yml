@@ -35,7 +35,7 @@ jobs:
           --volume $PWD:/work
           --rm
           abogoyavlensky/cljstyle:0.15.0
-          cljstyle check --report
+          cljstyle check --report /work
 
   build:
     runs-on: ubuntu-latest

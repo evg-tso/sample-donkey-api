@@ -57,6 +57,10 @@
                        :dependencies [; Core clojure
                                       [org.clojure/core.async "1.6.673" :exclusions [org.clojure/tools.reader]]
 
+                                      ; Linters
+                                      [mvxcvi/cljstyle "0.15.0" :exclusions [org.clojure/tools.reader]] ; provided by com.appsflyer/ketu
+                                      [clj-kondo "2023.05.18" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
+
                                       [criterium "0.4.6"]
 
                                       ; Code coverage
@@ -68,4 +72,5 @@
                        :eftest       {:multithread?    false
                                       :capture-output? false
                                       :report          eftest.report.junit/report
-                                      :report-to-file  "target/junit.xml"}}})
+                                      :report-to-file  "target/junit.xml"}
+                       :aliases {"lint" ["do" "run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel" "," "run" "-m" "cljstyle.main" "check"]}}})

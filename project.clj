@@ -13,7 +13,7 @@
                  [funcool/promesa "10.0.594"]
 
                  ; Validation
-                 [metosin/malli "0.11.0"]
+                 [metosin/malli "0.11.0" :exclusions [org.clojure/tools.reader]] ; provided by com.appsflyer/ketu
                  [commons-validator/commons-validator "1.7"]
 
                  ; HTTP server

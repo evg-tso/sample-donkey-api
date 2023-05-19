@@ -41,6 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@v3.5.2
       - name: Mega-Linter
         id: ml
         uses: nvuillam/mega-linter/flavors/java@v6.19.0

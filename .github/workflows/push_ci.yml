@@ -32,13 +32,10 @@ jobs:
       - name: Generate proto files
         run: lein protodeps generate
 
-      - name: Install clj-kondo
-        uses: DeLaGuardo/setup-clj-kondo@v1
+      - uses: DeLaGuardo/clojure-lint-action@v1
         with:
-          version: '2023.05.18'
-
-      - name: Run clj-kondo
-        run: clj-kondo --lint src test --cache false --parallel--config '{:output {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}}'
+          clj-kondo-args: --lint src test --cache false --parallel
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cljstyle
         uses: 0918nobita/setup-cljstyle@v0.5.4

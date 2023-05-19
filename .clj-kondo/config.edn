@@ -1,4 +1,5 @@
-{:linters {:unresolved-symbol   {:level :error}
+{:output  {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}
+ :linters {:unresolved-symbol   {:level :error}
            :unused-binding      {:level :error}
            :unused-namespace    {:level :error}
            :unused-referred-var {:level :error}

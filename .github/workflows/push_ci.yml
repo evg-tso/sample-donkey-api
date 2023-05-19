@@ -32,8 +32,18 @@ jobs:
       - name: Generate proto files
         run: lein protodeps generate
 
-      - name: Run linters
-        run: lein lint
+      - name: Install clj-kondo
+        uses: DeLaGuardo/setup-clj-kondo@v1
+        with:
+          version: '2023.05.18'
+
+      - name: Run clj-kondo
+        run: clj-kondo --lint src test --cache false --parallel--config '{:output {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"}}'
+
+      - name: Cljstyle
+        uses: 0918nobita/setup-cljstyle@v0.5.4
+        with:
+          run-check: true
 
       - name: Build uberjar
         run: lein uberjar

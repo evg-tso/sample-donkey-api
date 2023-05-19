@@ -7,7 +7,7 @@
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
   :java-source-paths ["src/java" "src/java/generated"]
   :dependencies [; Core clojure
-                 [org.clojure/clojure "1.11.1" :exclusions [org.clojure/spec.alpha]] ; org.clojure/spec.alpha is provided by com.appsflyer/donkey
+                 [org.clojure/clojure "1.11.1" :exclusions [org.clojure/spec.alpha]] ; provided by com.appsflyer/donkey
 
                  ; Async
                  [funcool/promesa "10.0.594"]
@@ -17,8 +17,9 @@
                  [commons-validator/commons-validator "1.7"]
 
                  ; HTTP server
-                 [com.appsflyer/donkey "0.5.2" :exclusions [metosin/jsonista]] ; metosin/jsonista is provided by metosin/reitit
-                 [metosin/reitit "0.6.0" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
+                 [com.appsflyer/donkey "0.5.2" :exclusions [metosin/jsonista  ; is provided by metosin/reitit
+                                                            org.slf4j/slf4j-api]] ; provided by nonseldiha/slf4j-mulog
+                 [metosin/reitit "0.6.0" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; provided by com.appsflyer/donkey
                  [ring/ring-core "1.10.0"]
 
                  ; State management
@@ -27,10 +28,11 @@
 
                  ; Logging
                  [com.brunobonacci/mulog "0.9.0"]
-                 [nonseldiha/slf4j-mulog "0.2.1"]
+                 [nonseldiha/slf4j-mulog "0.2.1" :exclusions [org.slf4j/slf4j-api]]
 
                  ; Kafka messaging
-                 [com.appsflyer/ketu "1.0.0" :exclusions [expound]] ; expound is provided by metosin/reitit
+                 [com.appsflyer/ketu "1.0.0" :exclusions [expound ; provided by metosin/reitit
+                                                          org.slf4j/slf4j-api]] ; provided by nonseldiha/slf4j-mulog
 
                  ; Protobuf
                  [com.google.protobuf/protobuf-java ~proto-version]
@@ -55,10 +57,6 @@
                        :dependencies [; Core clojure
                                       [org.clojure/core.async "1.6.673" :exclusions [org.clojure/tools.reader]]
 
-                                      ; Linters
-                                      [mvxcvi/cljstyle "0.15.0"]
-                                      [clj-kondo "2023.05.18" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; com.fasterxml.jackson.core/jackson-core is provided by com.appsflyer/donkey
-
                                       [criterium "0.4.6"]
 
                                       ; Code coverage
@@ -70,5 +68,4 @@
                        :eftest       {:multithread?    false
                                       :capture-output? false
                                       :report          eftest.report.junit/report
-                                      :report-to-file  "target/junit.xml"}
-                       :aliases      {"lint" ["do" "run" "-m" "clj-kondo.main" "--lint" "src" "test" "--cache" "false" "--parallel" "," "run" "-m" "cljstyle.main" "check"]}}})
+                                      :report-to-file  "target/junit.xml"}}})

@@ -2,7 +2,7 @@ name: "GitHub CI"
 
 on:
   pull_request:
-    branches: [master]
+    branches: [ master ]
 
 jobs:
   clj-kondo:
@@ -37,6 +37,34 @@ jobs:
           abogoyavlensky/cljstyle:0.15.0
           cljstyle check --report /work
 
+  megalinter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Mega-Linter
+        id: ml
+        uses: nvuillam/mega-linter/flavors/java@v6.19.0
+        env:
+          # All available variables are described in documentation
+          # https://nvuillam.github.io/mega-linter/configuration/
+          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }} # Validates all source when push on master, else just the git diff with master. Override with true if you always want to lint all sources
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISABLE: MARKDOWN,SPELL
+          DISABLE_LINTERS: REPOSITORY_SEMGREP
+          JAVA_CHECKSTYLE_FILTER_REGEX_EXCLUDE: generated
+          CLOJURE_CLJ_KONDO_FILTER_REGEX_INCLUDE: (src|lib)
+          COPYPASTE_JSCPD_DISABLE_ERRORS_IF_LESS_THAN: 2
+
+      # Upload Mega-Linter artifacts
+      - name: Archive production artifacts
+        if: ${{ success() }} || ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mega-Linter reports
+          path: |
+            report
+            mega-linter.log
+
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -67,32 +95,12 @@ jobs:
       - name: Build uberjar
         run: lein uberjar
 
-      - name: Mega-Linter
-        id: ml
-        uses: nvuillam/mega-linter/flavors/java@v6.19.0
-        env:
-          # All available variables are described in documentation
-          # https://nvuillam.github.io/mega-linter/configuration/
-          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }} # Validates all source when push on master, else just the git diff with master. Override with true if you always want to lint all sources
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DISABLE: MARKDOWN,SPELL
-          DISABLE_LINTERS: REPOSITORY_SEMGREP
-          JAVA_CHECKSTYLE_FILTER_REGEX_EXCLUDE: generated
-          CLOJURE_CLJ_KONDO_FILTER_REGEX_INCLUDE: (src|lib)
-          COPYPASTE_JSCPD_DISABLE_ERRORS_IF_LESS_THAN: 2
-
-      # Upload Mega-Linter artifacts
-      - name: Archive production artifacts
-        if: ${{ success() }} || ${{ failure() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: Mega-Linter reports
-          path: |
-            report
-            mega-linter.log
-
   test:
-    needs: build
+    needs:
+      - build
+      - clj-kondo
+      - cljstyle
+      - megalinter
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

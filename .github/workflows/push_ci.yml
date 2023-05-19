@@ -1,3 +1,4 @@
+---
 name: "GitHub CI"
 
 on:
@@ -65,7 +66,6 @@ jobs:
           path: |
             report
             mega-linter.log
-    
 
   build:
     runs-on: ubuntu-latest

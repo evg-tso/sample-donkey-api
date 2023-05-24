@@ -32,15 +32,11 @@ jobs:
   cljstyle:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    container: abogoyavlensky/cljstyle:0.15.0
     steps:
       - uses: actions/checkout@v3.5.2
       - name: Check with cljstyle
-        run: >-
-          docker run
-          --volume "$PWD:/work"
-          --rm
-          abogoyavlensky/cljstyle:0.15.0
-          cljstyle check --report /work
+        run: cljstyle check --report
 
   megalinter:
     runs-on: ubuntu-latest

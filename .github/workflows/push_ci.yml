@@ -18,34 +18,25 @@ jobs:
   clj-kondo:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    container: cljkondo/clj-kondo:2023.05.18-alpine
     steps:
       - uses: actions/checkout@v3.5.2
       - name: Run clj-kondo
         run: >-
-          docker run
-          --volume "$PWD:/work"
-          --rm
-          cljkondo/clj-kondo:2023.05.18-alpine
           clj-kondo
-          --config /work/.clj-kondo/config.edn
-          --config-dir /work/.clj-kondo
+          --config .clj-kondo/config.edn
+          --config-dir .clj-kondo
           --parallel
-          --lint
-          /work/src
-          /work/test
+          --lint src test
 
   cljstyle:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    container: abogoyavlensky/cljstyle:0.15.0
     steps:
       - uses: actions/checkout@v3.5.2
       - name: Check with cljstyle
-        run: >-
-          docker run
-          --volume "$PWD:/work"
-          --rm
-          abogoyavlensky/cljstyle:0.15.0
-          cljstyle check --report /work
+        run: cljstyle check --report
 
   megalinter:
     runs-on: ubuntu-latest

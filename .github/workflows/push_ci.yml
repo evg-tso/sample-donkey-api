@@ -18,21 +18,19 @@ jobs:
   clj-kondo:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    services:
+      clj-kondo:
+        image: cljkondo/clj-kondo:2023.05.18-alpine
     steps:
       - uses: actions/checkout@v3.5.2
       - name: Run clj-kondo
         run: >-
-          docker run
-          --volume "$PWD:/work"
-          --rm
           cljkondo/clj-kondo:2023.05.18-alpine
           clj-kondo
           --config /work/.clj-kondo/config.edn
           --config-dir /work/.clj-kondo
           --parallel
           --lint
-          /work/src
-          /work/test
 
   cljstyle:
     runs-on: ubuntu-latest

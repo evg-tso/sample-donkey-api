@@ -24,10 +24,10 @@ jobs:
       - name: Run clj-kondo
         run: >-
           clj-kondo
-          --config /work/.clj-kondo/config.edn
-          --config-dir /work/.clj-kondo
+          --config .clj-kondo/config.edn
+          --config-dir .clj-kondo
           --parallel
-          --lint
+          --lint src test
 
   cljstyle:
     runs-on: ubuntu-latest

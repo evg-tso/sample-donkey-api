@@ -23,7 +23,7 @@
                  [ring/ring-core "1.10.0"]
 
                  ; State management
-                 [integrant "0.8.0"]
+                 [integrant "0.8.1"]
                  [com.walmartlabs/dyn-edn "0.2.0"]
 
                  ; Logging

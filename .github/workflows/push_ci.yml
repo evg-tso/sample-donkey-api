@@ -18,7 +18,7 @@ jobs:
   clj-kondo:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    container: cljkondo/clj-kondo:2023.05.18-alpine
+    container: cljkondo/clj-kondo:2023.05.26-alpine
     steps:
       - uses: actions/checkout@v3.5.2
       - name: Run clj-kondo

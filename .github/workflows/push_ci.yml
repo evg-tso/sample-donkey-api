@@ -51,11 +51,6 @@ jobs:
           # https://nvuillam.github.io/mega-linter/configuration/
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }} # Validates all source when push on master, else just the git diff with master. Override with true if you always want to lint all sources
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DISABLE: MARKDOWN,SPELL
-          DISABLE_LINTERS: REPOSITORY_SEMGREP, CLOJURE_CLJSTYLE
-          JAVA_CHECKSTYLE_FILTER_REGEX_EXCLUDE: generated
-          CLOJURE_CLJ_KONDO_FILTER_REGEX_INCLUDE: (src|lib)
-          COPYPASTE_JSCPD_DISABLE_ERRORS_IF_LESS_THAN: 2
 
       # Upload Mega-Linter artifacts
       - name: Archive production artifacts

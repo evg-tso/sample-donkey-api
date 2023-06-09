@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 5
     container: cljkondo/clj-kondo:2023.05.26-alpine
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.3
       - name: Run clj-kondo
         run: >-
           clj-kondo
@@ -34,7 +34,7 @@ jobs:
     timeout-minutes: 5
     container: abogoyavlensky/cljstyle:0.15.0
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.3
       - name: Check with cljstyle
         run: cljstyle check --report
 
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.3
       - name: Mega-Linter
         id: ml
         uses: nvuillam/mega-linter/flavors/java@v7.0.4
@@ -67,7 +67,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
@@ -102,7 +102,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3.11.0

@@ -56,7 +56,7 @@
                                       ; Protobuf
                                       [com.appsflyer/lein-protodeps "1.0.5"]]
                        :dependencies [; Core clojure
-                                      [org.clojure/core.async "1.6.673" :exclusions [org.clojure/tools.reader]]
+                                      [org.clojure/core.async "1.6.681" :exclusions [org.clojure/tools.reader]]
 
                                       [criterium "0.4.6"]
 

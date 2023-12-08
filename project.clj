@@ -14,7 +14,7 @@
 
                  ; Validation
                  [metosin/malli "0.13.0"] ; provided by com.appsflyer/ketu
-                 [commons-validator/commons-validator "1.7"]
+                 [commons-validator/commons-validator "1.8.0"]
 
                  ; HTTP server
                  [com.appsflyer/donkey "0.5.2" :exclusions [metosin/jsonista  ; is provided by metosin/reitit

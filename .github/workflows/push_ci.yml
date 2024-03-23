@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Mega-Linter
         id: ml
-        uses: nvuillam/mega-linter/flavors/java@v7.3.0
+        uses: nvuillam/mega-linter/flavors/java@v7.10.0
         env:
           # All available variables are described in documentation
           # https://nvuillam.github.io/mega-linter/configuration/

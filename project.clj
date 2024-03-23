@@ -13,7 +13,7 @@
                  [funcool/promesa "11.0.678"]
 
                  ; Validation
-                 [metosin/malli "0.14.0"] ; provided by com.appsflyer/ketu
+                 [metosin/malli "0.15.0"] ; provided by com.appsflyer/ketu
                  [commons-validator/commons-validator "1.8.0"]
 
                  ; HTTP server

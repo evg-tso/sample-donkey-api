@@ -19,7 +19,7 @@
                  ; HTTP server
                  [com.appsflyer/donkey "0.5.2" :exclusions [metosin/jsonista  ; is provided by metosin/reitit
                                                             org.slf4j/slf4j-api]] ; provided by nonseldiha/slf4j-mulog
-                 [metosin/reitit "0.6.0" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; provided by com.appsflyer/donkey
+                 [metosin/reitit "0.7.0" :exclusions [com.fasterxml.jackson.core/jackson-core]] ; provided by com.appsflyer/donkey
                  [ring/ring-core "1.12.1"]
 
                  ; State management
